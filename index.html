@@ -24,109 +24,42 @@
     --shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
-
-  /* HEADER */
-  header {
-    background: linear-gradient(135deg, #1a0505 0%, #3d0b0b 40%, #1a0a1a 100%);
-    border-bottom: 2px solid var(--fire);
-    padding: 0;
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 4px 20px rgba(232,65,24,0.3);
-  }
-  .header-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 24px;
-  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  header { background: linear-gradient(135deg, #1a0505 0%, #3d0b0b 40%, #1a0a1a 100%); border-bottom: 2px solid var(--fire); padding: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(232,65,24,0.3); }
+  .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
   .logo { display: flex; align-items: center; gap: 12px; }
   .logo-icon { font-size: 2rem; filter: drop-shadow(0 0 8px #e84118); }
   .logo-text h1 { font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
   .logo-text p { font-size: 0.72rem; color: var(--ember); text-transform: uppercase; letter-spacing: 1.5px; }
-  .badge {
-    background: rgba(232,65,24,0.15); border: 1px solid var(--fire);
-    color: var(--fire); padding: 4px 12px; border-radius: 20px;
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 1px;
-  }
-
-  /* NAV TABS */
-  .nav-tabs {
-    display: flex; gap: 4px; padding: 0 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    max-width: 1200px; margin: 0 auto;
-    overflow-x: auto;
-  }
-  .tab-btn {
-    background: none; border: none; cursor: pointer;
-    color: var(--text-muted); padding: 10px 18px;
-    font-size: 0.82rem; font-weight: 500; white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s; border-radius: 4px 4px 0 0;
-  }
+  .badge { background: rgba(232,65,24,0.15); border: 1px solid var(--fire); color: var(--fire); padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; }
+  .nav-tabs { display: flex; gap: 4px; padding: 0 24px; border-top: 1px solid rgba(255,255,255,0.06); max-width: 1200px; margin: 0 auto; overflow-x: auto; }
+  .tab-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 10px 18px; font-size: 0.82rem; font-weight: 500; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; border-radius: 4px 4px 0 0; }
   .tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
   .tab-btn.active { color: var(--ember); border-bottom-color: var(--ember); background: rgba(243,156,18,0.08); }
   .tab-btn .tab-icon { margin-right: 6px; }
-
-  /* MAIN */
   main { max-width: 1200px; margin: 0 auto; padding: 28px 24px 60px; }
   .tab-panel { display: none; animation: fadeIn 0.3s ease; }
   .tab-panel.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* GRID */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media(max-width:768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
-
-  /* CARD */
-  .card {
-    background: var(--card2); border: 1px solid var(--border);
-    border-radius: 12px; padding: 22px;
-    box-shadow: var(--shadow);
-  }
-  .card-title {
-    font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.8px; margin-bottom: 18px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .card-title .icon { font-size: 1.1rem; }
-
-  /* FORM ELEMENTS */
+  @media(max-width:768px) { .grid-2 { grid-template-columns: 1fr; } }
+  .card { background: var(--card2); border: 1px solid var(--border); border-radius: 12px; padding: 22px; box-shadow: var(--shadow); }
+  .card-title { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
   label { display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 5px; font-weight: 500; }
-  input[type=number], input[type=text], select {
-    width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 7px; padding: 9px 12px; color: var(--text);
-    font-size: 0.88rem; outline: none; transition: border-color 0.2s;
-  }
+  input[type=number], input[type=text], select { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 7px; padding: 9px 12px; color: var(--text); font-size: 0.88rem; outline: none; transition: border-color 0.2s; }
   input:focus, select:focus { border-color: var(--ember); box-shadow: 0 0 0 3px rgba(243,156,18,0.12); }
   select option { background: var(--smoke); }
   .form-group { margin-bottom: 14px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-  /* BUTTONS */
-  .btn {
-    padding: 10px 22px; border-radius: 8px; border: none;
-    font-size: 0.88rem; font-weight: 600; cursor: pointer;
-    transition: all 0.2s; letter-spacing: 0.3px;
-  }
+  .btn { padding: 10px 22px; border-radius: 8px; border: none; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; letter-spacing: 0.3px; }
   .btn-fire { background: var(--fire); color: #fff; }
   .btn-fire:hover { background: var(--fire-dark); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(232,65,24,0.4); }
   .btn-water { background: var(--water); color: #fff; }
-  .btn-water:hover { background: var(--water-light); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(41,128,185,0.4); }
+  .btn-water:hover { background: var(--water-light); transform: translateY(-1px); }
   .btn-safe { background: var(--safe); color: #fff; }
   .btn-safe:hover { filter: brightness(1.15); transform: translateY(-1px); }
   .btn-block { width: 100%; margin-top: 6px; }
-
-  /* RESULT BOX */
-  .result-box {
-    background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px; padding: 16px; margin-top: 14px;
-  }
+  .result-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 16px; margin-top: 14px; }
   .result-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .result-row:last-child { border-bottom: none; }
   .result-label { font-size: 0.78rem; color: var(--text-muted); }
@@ -134,81 +67,39 @@
   .result-value.danger { color: var(--fire); }
   .result-value.safe { color: var(--safe); }
   .result-value.water { color: var(--water-light); }
-
-  /* CHART CANVAS */
   canvas { border-radius: 8px; background: rgba(0,0,0,0.2); }
-
-  /* ALERT */
-  .alert {
-    padding: 12px 16px; border-radius: 8px; margin-top: 12px;
-    font-size: 0.82rem; font-weight: 500; line-height: 1.5;
-  }
+  .alert { padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 0.82rem; font-weight: 500; line-height: 1.5; }
   .alert-warning { background: rgba(243,156,18,0.12); border: 1px solid rgba(243,156,18,0.3); color: var(--ember); }
-  .alert-danger  { background: rgba(232,65,24,0.12);  border: 1px solid rgba(232,65,24,0.3);  color: #ff6b6b; }
+  .alert-danger  { background: rgba(232,65,24,0.12); border: 1px solid rgba(232,65,24,0.3); color: #ff6b6b; }
   .alert-info    { background: rgba(41,128,185,0.12); border: 1px solid rgba(41,128,185,0.3); color: #74b9ff; }
-  .alert-safe    { background: rgba(39,174,96,0.12);  border: 1px solid rgba(39,174,96,0.3);  color: #55efc4; }
-
-  /* TABLE */
+  .alert-safe    { background: rgba(39,174,96,0.12); border: 1px solid rgba(39,174,96,0.3); color: #55efc4; }
   .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
   .data-table th { background: rgba(232,65,24,0.15); color: var(--ember); padding: 10px 12px; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
   .data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
   .data-table tr:hover td { background: rgba(255,255,255,0.03); }
-
-  /* BADGE PILL */
-  .pill {
-    display: inline-block; padding: 2px 10px; border-radius: 20px;
-    font-size: 0.72rem; font-weight: 600;
-  }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
   .pill-fire { background: rgba(232,65,24,0.2); color: #ff7675; border: 1px solid rgba(232,65,24,0.3); }
   .pill-water { background: rgba(41,128,185,0.2); color: #74b9ff; border: 1px solid rgba(41,128,185,0.3); }
   .pill-safe { background: rgba(39,174,96,0.2); color: #55efc4; border: 1px solid rgba(39,174,96,0.3); }
   .pill-amber { background: rgba(243,156,18,0.2); color: var(--ember); border: 1px solid rgba(243,156,18,0.3); }
-
-  /* SECTION HEADER */
   .section-header { margin-bottom: 20px; }
   .section-header h2 { font-size: 1.35rem; font-weight: 700; }
   .section-header p { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
-
-  /* SLIDER */
   input[type=range] { width: 100%; accent-color: var(--ember); height: 6px; }
   .slider-val { font-size: 1.1rem; font-weight: 700; color: var(--ember); }
-
-  /* DASHBOARD KPIS */
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
-  @media(max-width:900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
-  .kpi-card {
-    background: var(--card2); border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px 18px;
-    border-left: 3px solid;
-  }
-  .kpi-card.fire { border-left-color: var(--fire); }
-  .kpi-card.water { border-left-color: var(--water-light); }
-  .kpi-card.amber { border-left-color: var(--ember); }
-  .kpi-card.safe { border-left-color: var(--safe); }
-  .kpi-num { font-size: 1.6rem; font-weight: 800; }
-  .kpi-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
-  .kpi-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
-
-  /* PROGRESS BAR */
-  .progress-wrap { background: rgba(255,255,255,0.07); border-radius: 6px; height: 8px; overflow: hidden; margin-top: 6px; }
-  .progress-bar { height: 100%; border-radius: 6px; transition: width 0.5s ease; }
-
-  /* NORMAS REFERENCE */
   .norm-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
   .norm-item:last-child { border-bottom: none; }
   .norm-code { font-size: 0.9rem; font-weight: 700; color: var(--ember); }
   .norm-title { font-size: 0.85rem; color: var(--text); margin: 2px 0; }
   .norm-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
-
-  /* FLASHOVER VISUAL */
   .fo-stages { display: flex; gap: 8px; margin-top: 12px; }
   .fo-stage { flex: 1; padding: 10px 6px; border-radius: 8px; text-align: center; font-size: 0.7rem; font-weight: 600; }
-
   hr.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
   .mb-16 { margin-bottom: 16px; }
   .mt-12 { margin-top: 12px; }
   .text-sm { font-size: 0.8rem; color: var(--text-muted); }
-  .full-width { grid-column: 1 / -1; }
+  .progress-wrap { background: rgba(255,255,255,0.07); border-radius: 6px; height: 8px; overflow: hidden; margin-top: 6px; }
+  .progress-bar { height: 100%; border-radius: 6px; transition: width 0.5s ease; }
 </style>
 </head>
 <body>
@@ -224,21 +115,20 @@
     </div>
     <div class="badge">NFPA · RNE · IEC</div>
   </div>
-  <nav class="nav-tabs" id="navTabs">
+  <nav class="nav-tabs">
     <button class="tab-btn active" onclick="showTab('hrr')"><span class="tab-icon">📈</span>HRR / αt²</button>
     <button class="tab-btn" onclick="showTab('hidro')"><span class="tab-icon">💧</span>Hidráulica</button>
     <button class="tab-btn" onclick="showTab('rociadores')"><span class="tab-icon">🚿</span>Rociadores</button>
     <button class="tab-btn" onclick="showTab('bombas')"><span class="tab-icon">⚙️</span>Bombas BCI</button>
     <button class="tab-btn" onclick="showTab('evacuacion')"><span class="tab-icon">🚪</span>Evacuación</button>
+    <button class="tab-btn" onclick="showTab('extintores')"><span class="tab-icon">🧯</span>Extintores</button>
     <button class="tab-btn" onclick="showTab('normas')"><span class="tab-icon">📋</span>Normas</button>
   </nav>
 </header>
 
 <main>
 
-<!-- ============================
-     TAB 1: HRR / αt²
-     ============================ -->
+<!-- TAB 1: HRR -->
 <div id="hrr" class="tab-panel active">
   <div class="section-header">
     <h2>🔥 Tasa de Liberación de Calor (HRR) — Modelo αt²</h2>
@@ -247,7 +137,7 @@
   <div class="grid-2">
     <div>
       <div class="card">
-        <div class="card-title"><span class="icon">⚙️</span> Parámetros del Incendio</div>
+        <div class="card-title"><span>⚙️</span> Parámetros del Incendio</div>
         <div class="form-group">
           <label>Clasificación de Crecimiento</label>
           <select id="hrrClass" onchange="updateAlpha()">
@@ -267,11 +157,11 @@
           <input type="range" id="tMax" min="60" max="1800" step="30" value="600" oninput="document.getElementById('tMaxLabel').textContent=this.value+' s'; calcHRR();">
         </div>
         <div class="form-group">
-          <label>HRR de diseño (Q<sub>d</sub>) para flashover (kW)</label>
+          <label>HRR de diseño Qd para flashover (kW)</label>
           <input type="number" id="qFlashover" value="1000" oninput="calcHRR()">
         </div>
         <div class="form-group">
-          <label>Área del local (m²) — para cálculo de flashover</label>
+          <label>Área del local (m²)</label>
           <input type="number" id="aLocal" value="100" oninput="calcHRR()">
         </div>
         <div class="form-group">
@@ -280,39 +170,33 @@
         </div>
         <button class="btn btn-fire btn-block" onclick="calcHRR()">▶ Calcular y Graficar</button>
       </div>
-
       <div class="card mt-12">
-        <div class="card-title"><span class="icon">📊</span> Resultados HRR</div>
-        <div class="result-box" id="hrrResults">
+        <div class="card-title"><span>📊</span> Resultados HRR</div>
+        <div class="result-box">
           <div class="result-row"><span class="result-label">α (coeficiente)</span><span class="result-value" id="r_alpha">—</span></div>
           <div class="result-row"><span class="result-label">t₁MW — Tiempo a 1 MW</span><span class="result-value danger" id="r_t1mw">—</span></div>
           <div class="result-row"><span class="result-label">t_flashover (Qd)</span><span class="result-value danger" id="r_tfo">—</span></div>
           <div class="result-row"><span class="result-label">Q a t_max</span><span class="result-value" id="r_qtmax">—</span></div>
-          <div class="result-row"><span class="result-label">Criterio Flashover (Thomas)</span><span class="result-value amber" id="r_thomas">—</span></div>
+          <div class="result-row"><span class="result-label">Criterio Flashover (Thomas)</span><span class="result-value" id="r_thomas">—</span></div>
         </div>
         <div id="hrrAlert" class="alert alert-warning mt-12" style="display:none;"></div>
       </div>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="icon">📉</span> Curva HRR vs Tiempo</div>
+      <div class="card-title"><span>📉</span> Curva HRR vs Tiempo</div>
       <canvas id="hrrChart" width="500" height="380"></canvas>
-      <div class="text-sm mt-12">
-        🟠 Curva αt² &nbsp; 🔴 Umbral flashover &nbsp; 🔵 Umbral 1 MW
-      </div>
-      <div class="fo-stages mt-12" id="foStages">
-        <div class="fo-stage" style="background:rgba(39,174,96,0.15); border:1px solid rgba(39,174,96,0.3); color:#55efc4;">⬤ Ignición</div>
-        <div class="fo-stage" style="background:rgba(243,156,18,0.15); border:1px solid rgba(243,156,18,0.3); color:var(--ember);">⬤ Crecimiento</div>
-        <div class="fo-stage" style="background:rgba(232,65,24,0.15); border:1px solid rgba(232,65,24,0.3); color:#ff7675;">⬤ Flashover</div>
-        <div class="fo-stage" style="background:rgba(180,0,0,0.25); border:1px solid rgba(180,0,0,0.4); color:#ff4444;">⬤ Fuego Total</div>
+      <div class="text-sm mt-12">🟠 Curva αt² &nbsp; 🔴 Umbral flashover &nbsp; 🔵 Umbral 1 MW</div>
+      <div class="fo-stages mt-12">
+        <div class="fo-stage" style="background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);color:#55efc4;">⬤ Ignición</div>
+        <div class="fo-stage" style="background:rgba(243,156,18,0.15);border:1px solid rgba(243,156,18,0.3);color:var(--ember);">⬤ Crecimiento</div>
+        <div class="fo-stage" style="background:rgba(232,65,24,0.15);border:1px solid rgba(232,65,24,0.3);color:#ff7675;">⬤ Flashover</div>
+        <div class="fo-stage" style="background:rgba(180,0,0,0.25);border:1px solid rgba(180,0,0,0.4);color:#ff4444;">⬤ Fuego Total</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============================
-     TAB 2: HIDRÁULICA
-     ============================ -->
+<!-- TAB 2: HIDRÁULICA -->
 <div id="hidro" class="tab-panel">
   <div class="section-header">
     <h2>💧 Cálculo Hidráulico — Hazen-Williams</h2>
@@ -320,22 +204,13 @@
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span class="icon">🔧</span> Datos de la Tubería</div>
+      <div class="card-title"><span>🔧</span> Datos de la Tubería</div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Caudal Q (L/min)</label>
-          <input type="number" id="hwQ" value="500" oninput="calcHW()">
-        </div>
-        <div class="form-group">
-          <label>Longitud L (m)</label>
-          <input type="number" id="hwL" value="50" oninput="calcHW()">
-        </div>
+        <div class="form-group"><label>Caudal Q (L/min)</label><input type="number" id="hwQ" value="500" oninput="calcHW()"></div>
+        <div class="form-group"><label>Longitud L (m)</label><input type="number" id="hwL" value="50" oninput="calcHW()"></div>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Diámetro interno D (mm)</label>
-          <input type="number" id="hwD" value="100" oninput="calcHW()">
-        </div>
+        <div class="form-group"><label>Diámetro interno D (mm)</label><input type="number" id="hwD" value="100" oninput="calcHW()"></div>
         <div class="form-group">
           <label>C — Coeficiente H-W</label>
           <select id="hwC" onchange="calcHW()">
@@ -344,153 +219,98 @@
             <option value="140">CPVC (rociadores) — 140</option>
             <option value="150">PVC rígido — 150</option>
             <option value="100">Hierro fundido — 100</option>
-            <option value="140">Acero inox — 140</option>
           </select>
         </div>
       </div>
-      <div class="form-group">
-        <label>Longitud equivalente de accesorios (m)</label>
-        <input type="number" id="hwLeq" value="15" step="0.5" oninput="calcHW()">
-      </div>
-      <div class="form-group">
-        <label>Diferencia de elevación Δz (m) — positivo = sube</label>
-        <input type="number" id="hwZ" value="0" oninput="calcHW()">
-      </div>
+      <div class="form-group"><label>Longitud equivalente accesorios (m)</label><input type="number" id="hwLeq" value="15" step="0.5" oninput="calcHW()"></div>
+      <div class="form-group"><label>Diferencia de elevación Δz (m) — positivo = sube</label><input type="number" id="hwZ" value="0" oninput="calcHW()"></div>
       <button class="btn btn-water btn-block" onclick="calcHW()">▶ Calcular</button>
-
-      <div class="result-box mt-12" id="hwResults">
+      <div class="result-box mt-12">
         <div class="result-row"><span class="result-label">Velocidad (m/s)</span><span class="result-value water" id="r_vel">—</span></div>
         <div class="result-row"><span class="result-label">Pérdida fricción (kPa)</span><span class="result-value" id="r_hf_kpa">—</span></div>
         <div class="result-row"><span class="result-label">Pérdida fricción (psi)</span><span class="result-value" id="r_hf_psi">—</span></div>
         <div class="result-row"><span class="result-label">Pérdida por elevación (kPa)</span><span class="result-value" id="r_hz">—</span></div>
         <div class="result-row"><span class="result-label">Pérdida TOTAL (kPa)</span><span class="result-value danger" id="r_htot">—</span></div>
-        <div class="result-row"><span class="result-label">Gradiente (kPa/m)</span><span class="result-value amber" id="r_grad">—</span></div>
+        <div class="result-row"><span class="result-label">Gradiente (kPa/m)</span><span class="result-value" id="r_grad">—</span></div>
       </div>
       <div id="hwAlert" class="alert mt-12" style="display:none;"></div>
     </div>
-
     <div>
       <div class="card">
-        <div class="card-title"><span class="icon">📐</span> Diámetros Comerciales Típicos</div>
+        <div class="card-title"><span>📐</span> Diámetros Comerciales Típicos</div>
         <table class="data-table">
-          <thead><tr><th>DN</th><th>D int (mm)</th><th>Sch</th><th>Uso típico</th></tr></thead>
+          <thead><tr><th>DN</th><th>D int (mm)</th><th>Uso típico</th></tr></thead>
           <tbody>
-            <tr><td>DN 25</td><td>27.1</td><td>10</td><td><span class="pill pill-water">Lateral</span></td></tr>
-            <tr><td>DN 32</td><td>35.1</td><td>10</td><td><span class="pill pill-water">Lateral</span></td></tr>
-            <tr><td>DN 40</td><td>40.9</td><td>10</td><td><span class="pill pill-water">Subramal</span></td></tr>
-            <tr><td>DN 50</td><td>52.5</td><td>10</td><td><span class="pill pill-amber">Ramal</span></td></tr>
-            <tr><td>DN 65</td><td>66.9</td><td>10</td><td><span class="pill pill-amber">Ramal</span></td></tr>
-            <tr><td>DN 80</td><td>82.8</td><td>10</td><td><span class="pill pill-fire">Alimentador</span></td></tr>
-            <tr><td>DN 100</td><td>102.3</td><td>10</td><td><span class="pill pill-fire">Montante</span></td></tr>
-            <tr><td>DN 150</td><td>154.1</td><td>10</td><td><span class="pill pill-fire">Red ppal.</span></td></tr>
+            <tr><td>DN 25</td><td>27.1</td><td><span class="pill pill-water">Lateral</span></td></tr>
+            <tr><td>DN 32</td><td>35.1</td><td><span class="pill pill-water">Lateral</span></td></tr>
+            <tr><td>DN 40</td><td>40.9</td><td><span class="pill pill-water">Subramal</span></td></tr>
+            <tr><td>DN 50</td><td>52.5</td><td><span class="pill pill-amber">Ramal</span></td></tr>
+            <tr><td>DN 65</td><td>66.9</td><td><span class="pill pill-amber">Ramal</span></td></tr>
+            <tr><td>DN 80</td><td>82.8</td><td><span class="pill pill-fire">Alimentador</span></td></tr>
+            <tr><td>DN 100</td><td>102.3</td><td><span class="pill pill-fire">Montante</span></td></tr>
+            <tr><td>DN 150</td><td>154.1</td><td><span class="pill pill-fire">Red ppal.</span></td></tr>
           </tbody>
         </table>
       </div>
-
       <div class="card mt-12">
-        <div class="card-title"><span class="icon">💡</span> Criterios de Diseño NFPA</div>
-        <div class="norm-item">
-          <div class="norm-code">Velocidad máxima</div>
-          <div class="norm-desc">≤ 6 m/s en tuberías de rociadores (NFPA 13). ≤ 4.5 m/s recomendado para reducir ruido y golpe de ariete.</div>
-        </div>
-        <div class="norm-item">
-          <div class="norm-code">Presión residual mínima</div>
-          <div class="norm-desc">NFPA 13: ≥ 7 psi (48 kPa) en el rociador más desfavorable. NFPA 14: ≥ 100 psi (689 kPa) en Clase III.</div>
-        </div>
-        <div class="norm-item">
-          <div class="norm-code">Presión máxima</div>
-          <div class="norm-desc">≤ 175 psi (1207 kPa) en cualquier punto del sistema de rociadores.</div>
-        </div>
+        <div class="card-title"><span>💡</span> Criterios NFPA</div>
+        <div class="norm-item"><div class="norm-code">Velocidad máxima</div><div class="norm-desc">≤ 6 m/s en tuberías de rociadores (NFPA 13). ≤ 4.5 m/s recomendado.</div></div>
+        <div class="norm-item"><div class="norm-code">Presión residual mínima</div><div class="norm-desc">NFPA 13: ≥ 7 psi (48 kPa) en rociador más desfavorable.</div></div>
+        <div class="norm-item"><div class="norm-code">Presión máxima</div><div class="norm-desc">≤ 175 psi (1207 kPa) en cualquier punto del sistema.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============================
-     TAB 3: ROCIADORES
-     ============================ -->
+<!-- TAB 3: ROCIADORES -->
 <div id="rociadores" class="tab-panel">
   <div class="section-header">
     <h2>🚿 Diseño de Rociadores — NFPA 13</h2>
-    <p>Área de diseño, densidad, caudal y selección de rociador según clasificación de riesgo</p>
+    <p>Área de diseño, densidad, caudal y selección según clasificación de riesgo</p>
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span class="icon">🏭</span> Clasificación del Riesgo</div>
+      <div class="card-title"><span>🏭</span> Clasificación del Riesgo</div>
       <div class="form-group">
         <label>Tipo de Ocupación / Riesgo</label>
-        <select id="riskType" onchange="updateRisk()">
-          <optgroup label="Riesgo Ligero">
-            <option value="RL">Riesgo Ligero (Light Hazard)</option>
-          </optgroup>
-          <optgroup label="Riesgo Ordinario">
-            <option value="RO1">Riesgo Ordinario Grupo 1 (OH-1)</option>
-            <option value="RO2" selected>Riesgo Ordinario Grupo 2 (OH-2)</option>
-          </optgroup>
-          <optgroup label="Riesgo Extra">
-            <option value="RE1">Riesgo Extra Grupo 1 (EH-1)</option>
-            <option value="RE2">Riesgo Extra Grupo 2 (EH-2)</option>
-          </optgroup>
-          <optgroup label="Almacenamiento">
-            <option value="ESFR">Almacén Alto Riesgo — ESFR</option>
-            <option value="CMSA">Almacén — CMSA</option>
-          </optgroup>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Tipo de Rociador</label>
-        <select id="sprinkType" onchange="calcSprinkler()">
-          <option value="pendiente">Pendiente (Pendent)</option>
-          <option value="montante">Montante (Upright)</option>
-          <option value="lateral">Lateral (Sidewall)</option>
-          <option value="esfr">ESFR (K=14 / K=25)</option>
-          <option value="cmsa">CMSA Control Mode</option>
+        <select id="riskType" onchange="calcSprinkler()">
+          <option value="RL">Riesgo Ligero (Light Hazard)</option>
+          <option value="RO1">Riesgo Ordinario Grupo 1 (OH-1)</option>
+          <option value="RO2" selected>Riesgo Ordinario Grupo 2 (OH-2)</option>
+          <option value="RE1">Riesgo Extra Grupo 1 (EH-1)</option>
+          <option value="RE2">Riesgo Extra Grupo 2 (EH-2)</option>
+          <option value="ESFR">Almacén Alto Riesgo — ESFR</option>
+          <option value="CMSA">Almacén — CMSA</option>
         </select>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Separación entre rociadores S (m)</label>
-          <input type="number" id="spkS" value="3.0" step="0.1" oninput="calcSprinkler()">
-        </div>
-        <div class="form-group">
-          <label>Separación entre ramales L (m)</label>
-          <input type="number" id="spkL" value="3.0" step="0.1" oninput="calcSprinkler()">
-        </div>
+        <div class="form-group"><label>Separación entre rociadores S (m)</label><input type="number" id="spkS" value="3.0" step="0.1" oninput="calcSprinkler()"></div>
+        <div class="form-group"><label>Separación entre ramales L (m)</label><input type="number" id="spkL" value="3.0" step="0.1" oninput="calcSprinkler()"></div>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Presión disponible en rociador (bar)</label>
-          <input type="number" id="spkP" value="1.0" step="0.05" oninput="calcSprinkler()">
-        </div>
-        <div class="form-group">
-          <label>Factor K del rociador</label>
-          <input type="number" id="spkK" value="80" step="1" oninput="calcSprinkler()">
-        </div>
+        <div class="form-group"><label>Presión disponible (bar)</label><input type="number" id="spkP" value="1.0" step="0.05" oninput="calcSprinkler()"></div>
+        <div class="form-group"><label>Factor K del rociador</label><input type="number" id="spkK" value="80" step="1" oninput="calcSprinkler()"></div>
       </div>
       <button class="btn btn-water btn-block" onclick="calcSprinkler()">▶ Calcular Diseño</button>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="icon">📊</span> Resultados NFPA 13</div>
-      <div class="result-box" id="sprinkResults">
-        <div class="result-row"><span class="result-label">Densidad requerida</span><span class="result-value amber" id="r_dens">—</span></div>
+      <div class="card-title"><span>📊</span> Resultados NFPA 13</div>
+      <div class="result-box">
+        <div class="result-row"><span class="result-label">Densidad requerida</span><span class="result-value" id="r_dens">—</span></div>
         <div class="result-row"><span class="result-label">Área de diseño</span><span class="result-value" id="r_area_d">—</span></div>
         <div class="result-row"><span class="result-label">Nº rociadores en área</span><span class="result-value" id="r_n_spk">—</span></div>
         <div class="result-row"><span class="result-label">Área por rociador</span><span class="result-value water" id="r_a_spk">—</span></div>
         <div class="result-row"><span class="result-label">Q por rociador (L/min)</span><span class="result-value" id="r_q_spk">—</span></div>
         <div class="result-row"><span class="result-label">Q total área diseño</span><span class="result-value danger" id="r_q_total">—</span></div>
-        <div class="result-row"><span class="result-label">RTI recomendado</span><span class="result-value amber" id="r_rti">—</span></div>
+        <div class="result-row"><span class="result-label">RTI recomendado</span><span class="result-value" id="r_rti">—</span></div>
       </div>
       <div id="sprinkAlert" class="alert mt-12"></div>
     </div>
   </div>
-
   <div class="card mt-12">
-    <div class="card-title"><span class="icon">📌</span> Referencia Rápida — Áreas y Densidades NFPA 13 (Tabla 19.3.3.1.1)</div>
+    <div class="card-title"><span>📌</span> Referencia Rápida — Áreas y Densidades NFPA 13</div>
     <table class="data-table">
-      <thead>
-        <tr><th>Clasificación</th><th>Densidad (mm/min)</th><th>Área diseño (m²)</th><th>Q mínimo (L/min)</th><th>Rociador típico</th></tr>
-      </thead>
+      <thead><tr><th>Clasificación</th><th>Densidad (mm/min)</th><th>Área diseño (m²)</th><th>Q mínimo (L/min)</th><th>Rociador típico</th></tr></thead>
       <tbody>
         <tr><td><span class="pill pill-safe">Riesgo Ligero</span></td><td>4.1</td><td>139</td><td>~950</td><td>K=80, Estd.</td></tr>
         <tr><td><span class="pill pill-amber">Ord. Grupo 1</span></td><td>6.1</td><td>139</td><td>~1400</td><td>K=80 / K=115</td></tr>
@@ -503,9 +323,7 @@
   </div>
 </div>
 
-<!-- ============================
-     TAB 4: BOMBAS BCI
-     ============================ -->
+<!-- TAB 4: BOMBAS -->
 <div id="bombas" class="tab-panel">
   <div class="section-header">
     <h2>⚙️ Dimensionamiento Bomba Contra Incendio — NFPA 20</h2>
@@ -513,67 +331,38 @@
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span class="icon">🔢</span> Demanda del Sistema</div>
+      <div class="card-title"><span>🔢</span> Demanda del Sistema</div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Caudal de diseño Q (L/min)</label>
-          <input type="number" id="pumpQ" value="2000" oninput="calcPump()">
-        </div>
-        <div class="form-group">
-          <label>Presión de diseño H (kPa)</label>
-          <input type="number" id="pumpH" value="700" oninput="calcPump()">
-        </div>
+        <div class="form-group"><label>Caudal de diseño Q (L/min)</label><input type="number" id="pumpQ" value="2000" oninput="calcPump()"></div>
+        <div class="form-group"><label>Presión de diseño H (kPa)</label><input type="number" id="pumpH" value="700" oninput="calcPump()"></div>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Presión estática fuente (kPa)</label>
-          <input type="number" id="pumpHs" value="150" oninput="calcPump()">
-        </div>
-        <div class="form-group">
-          <label>Caudal nominal bomba (L/min)</label>
-          <input type="number" id="pumpQn" value="2500" oninput="calcPump()">
-        </div>
+        <div class="form-group"><label>Presión estática fuente (kPa)</label><input type="number" id="pumpHs" value="150" oninput="calcPump()"></div>
+        <div class="form-group"><label>Caudal nominal bomba (L/min)</label><input type="number" id="pumpQn" value="2500" oninput="calcPump()"></div>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Presión nominal bomba (kPa)</label>
-          <input type="number" id="pumpHn" value="800" oninput="calcPump()">
-        </div>
-        <div class="form-group">
-          <label>Eficiencia estimada (%)</label>
-          <input type="number" id="pumpEff" value="70" min="30" max="90" oninput="calcPump()">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Tipo de bomba</label>
-        <select id="pumpType" onchange="calcPump()">
-          <option value="horizontal">Centrífuga horizontal de flecha partida</option>
-          <option value="vertical">Turbina vertical en línea</option>
-          <option value="sumergible">Sumergible turbina vertical</option>
-          <option value="inline">In-Line (presurización)</option>
-        </select>
+        <div class="form-group"><label>Presión nominal bomba (kPa)</label><input type="number" id="pumpHn" value="800" oninput="calcPump()"></div>
+        <div class="form-group"><label>Eficiencia estimada (%)</label><input type="number" id="pumpEff" value="70" min="30" max="90" oninput="calcPump()"></div>
       </div>
       <button class="btn btn-fire btn-block" onclick="calcPump()">▶ Verificar Criterios NFPA 20</button>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="icon">✅</span> Verificación NFPA 20</div>
+      <div class="card-title"><span>✅</span> Verificación NFPA 20</div>
       <div id="pumpChecks"></div>
       <div class="result-box mt-12">
-        <div class="result-row"><span class="result-label">Potencia al freno (kW)</span><span class="result-value amber" id="r_bhp">—</span></div>
-        <div class="result-row"><span class="result-label">Potencia al freno (HP)</span><span class="result-value amber" id="r_bhp_hp">—</span></div>
+        <div class="result-row"><span class="result-label">Potencia al freno (kW)</span><span class="result-value" id="r_bhp">—</span></div>
+        <div class="result-row"><span class="result-label">Potencia al freno (HP)</span><span class="result-value" id="r_bhp_hp">—</span></div>
         <div class="result-row"><span class="result-label">Motor recomendado (kW)</span><span class="result-value danger" id="r_motor">—</span></div>
         <div class="result-row"><span class="result-label">Q al 150% nominal</span><span class="result-value water" id="r_q150">—</span></div>
         <div class="result-row"><span class="result-label">H mínima al 150% Q</span><span class="result-value water" id="r_h150">—</span></div>
       </div>
     </div>
   </div>
-
   <div class="card mt-12">
-    <div class="card-title"><span class="icon">📋</span> Check-list de Aceptación NFPA 20 / NFPA 25</div>
+    <div class="card-title"><span>📋</span> Check-list Aceptación NFPA 20 / NFPA 25</div>
     <table class="data-table">
       <thead><tr><th>#</th><th>Verificación</th><th>Criterio</th><th>Estado</th></tr></thead>
-      <tbody id="pumpCheckTable">
+      <tbody>
         <tr><td>1</td><td>Prueba de flujo al 100% Qn</td><td>H ≥ Hn nominal</td><td><span class="pill pill-amber">Pendiente</span></td></tr>
         <tr><td>2</td><td>Prueba al 150% Qn</td><td>H ≥ 65% Hn</td><td><span class="pill pill-amber">Pendiente</span></td></tr>
         <tr><td>3</td><td>Prueba churn (0% Q)</td><td>H ≤ 140% Hn</td><td><span class="pill pill-amber">Pendiente</span></td></tr>
@@ -587,17 +376,15 @@
   </div>
 </div>
 
-<!-- ============================
-     TAB 5: EVACUACIÓN
-     ============================ -->
+<!-- TAB 5: EVACUACIÓN -->
 <div id="evacuacion" class="tab-panel">
   <div class="section-header">
-    <h2>🚪 Análisis de Evacuación — NFPA 101 / ISO 13571</h2>
-    <p>Tiempo disponible de escape (ASET) vs. tiempo necesario de escape (RSET) — Diseño Prestacional</p>
+    <h2>🚪 Análisis de Evacuación — NFPA 101</h2>
+    <p>Tiempo disponible de escape (ASET) vs. tiempo necesario de escape (RSET)</p>
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span class="icon">⏱️</span> Parámetros ASET / RSET</div>
+      <div class="card-title"><span>⏱️</span> Parámetros ASET / RSET</div>
       <div class="form-group">
         <label>Tipo de ocupación</label>
         <select id="occType" onchange="calcEvac()">
@@ -610,54 +397,30 @@
         </select>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Personas a evacuar</label>
-          <input type="number" id="evacPax" value="200" oninput="calcEvac()">
-        </div>
-        <div class="form-group">
-          <label>Número de salidas</label>
-          <input type="number" id="evacSalidas" value="2" min="1" oninput="calcEvac()">
-        </div>
+        <div class="form-group"><label>Personas a evacuar</label><input type="number" id="evacPax" value="200" oninput="calcEvac()"></div>
+        <div class="form-group"><label>Número de salidas</label><input type="number" id="evacSalidas" value="2" min="1" oninput="calcEvac()"></div>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Ancho de salida (m)</label>
-          <input type="number" id="evacAncho" value="1.8" step="0.1" oninput="calcEvac()">
-        </div>
-        <div class="form-group">
-          <label>Distancia de viaje máx. (m)</label>
-          <input type="number" id="evacDist" value="45" oninput="calcEvac()">
-        </div>
+        <div class="form-group"><label>Ancho de salida (m)</label><input type="number" id="evacAncho" value="1.8" step="0.1" oninput="calcEvac()"></div>
+        <div class="form-group"><label>Distancia de viaje máx. (m)</label><input type="number" id="evacDist" value="45" oninput="calcEvac()"></div>
       </div>
-      <div class="form-group">
-        <label>Tiempo de pre-evacuación t<sub>pre</sub> (s) — awake/alerta</label>
-        <input type="number" id="evacTpre" value="90" oninput="calcEvac()">
-      </div>
-      <div class="form-group">
-        <label>ASET disponible (s) — de simulación de humo / FDS</label>
-        <input type="number" id="evacAset" value="300" oninput="calcEvac()">
-      </div>
+      <div class="form-group"><label>Tiempo de pre-evacuación t_pre (s)</label><input type="number" id="evacTpre" value="90" oninput="calcEvac()"></div>
+      <div class="form-group"><label>ASET disponible (s) — de simulación FDS</label><input type="number" id="evacAset" value="300" oninput="calcEvac()"></div>
       <button class="btn btn-safe btn-block" onclick="calcEvac()">▶ Verificar ASET > RSET</button>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="icon">📊</span> Resultados de Evacuación</div>
-      <div class="result-box" id="evacResults">
+      <div class="card-title"><span>📊</span> Resultados de Evacuación</div>
+      <div class="result-box">
         <div class="result-row"><span class="result-label">Capacidad total salidas (p/min)</span><span class="result-value water" id="r_cap">—</span></div>
         <div class="result-row"><span class="result-label">t_movimiento estimado</span><span class="result-value" id="r_tmov">—</span></div>
         <div class="result-row"><span class="result-label">RSET total</span><span class="result-value danger" id="r_rset">—</span></div>
         <div class="result-row"><span class="result-label">ASET disponible</span><span class="result-value safe" id="r_aset">—</span></div>
-        <div class="result-row"><span class="result-label">Margen de seguridad</span><span class="result-value amber" id="r_margin">—</span></div>
+        <div class="result-row"><span class="result-label">Margen de seguridad</span><span class="result-value" id="r_margin">—</span></div>
       </div>
       <div id="evacAlert" class="alert mt-12"></div>
-
-      <div class="mt-12">
-        <div class="result-label mb-16">Barra de seguridad ASET vs RSET</div>
-        <div id="evacBar"></div>
-      </div>
-
+      <div class="mt-12" id="evacBar"></div>
       <hr class="divider">
-      <div class="card-title" style="margin-top:0;"><span class="icon">📏</span> Distancias Máximas NFPA 101</div>
+      <div class="card-title" style="margin-top:0;"><span>📏</span> Distancias Máximas NFPA 101</div>
       <table class="data-table">
         <thead><tr><th>Ocupación</th><th>Dist. viaje (m)</th><th>Dist. a salida (m)</th></tr></thead>
         <tbody>
@@ -672,9 +435,7 @@
   </div>
 </div>
 
-<!-- ============================
-     TAB 6: NORMAS
-     ============================ -->
+<!-- TAB 6: NORMAS -->
 <div id="normas" class="tab-panel">
   <div class="section-header">
     <h2>📋 Referencia Normativa — NFPA · RNE · NTP</h2>
@@ -682,103 +443,163 @@
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span class="icon">🇺🇸</span> Normas NFPA (EE.UU.) — Aplicación en Perú</div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 1 — Fire Code</div>
-        <div class="norm-title">Código de Fuego</div>
-        <div class="norm-desc">Marco general de prevención y protección. Referenciado por el RNE A.130.</div>
+      <div class="card-title"><span>🇺🇸</span> Normas NFPA — Aplicación en Perú</div>
+      <div class="norm-item"><div class="norm-code">NFPA 13 — 2022</div><div class="norm-title">Instalación de Sistemas de Rociadores Automáticos</div><div class="norm-desc">Norma principal para diseño e instalación. Define densidades, áreas de diseño, CMDA, CMSA y ESFR. Adoptada explícitamente en el RNE.</div></div>
+      <div class="norm-item"><div class="norm-code">NFPA 14 — 2019</div><div class="norm-title">Sistemas de Montantes y Mangueras</div><div class="norm-desc">Clases I, II, III. Requiere Clase I o III en edificios >3 pisos en Perú según A.130.</div></div>
+      <div class="norm-item"><div class="norm-code">NFPA 20 — 2022</div><div class="norm-title">Instalación de Bombas Estacionarias Contra Incendio</div><div class="norm-desc">Criterios H-Q, controladores, pruebas de aceptación. Exige curva 150%/65% y churn 140%.</div></div>
+      <div class="norm-item"><div class="norm-code">NFPA 25 — 2023</div><div class="norm-title">Inspección, Prueba y Mantenimiento</div><div class="norm-desc">Programas de mantenimiento para rociadores, montantes, bombas y válvulas.</div></div>
+      <div class="norm-item"><div class="norm-code">NFPA 72 — 2022</div><div class="norm-title">Código Nacional de Alarma de Incendio</div><div class="norm-desc">Diseño de detectores, notificadores, audio-evacuación. Inteligibilidad STI ≥ 0.45.</div></div>
+      <div class="norm-item"><div class="norm-code">NFPA 101 — 2021</div><div class="norm-title">Código de Seguridad Humana</div><div class="norm-desc">Medios de egreso, distancias de viaje, señalización y diseño prestacional (PBD).</div></div>
+      <div class="norm-item"><div class="norm-code">NFPA 2001 / 770</div><div class="norm-title">Agentes Limpios / Sistemas Híbridos</div><div class="norm-desc">Para CPDs, salas eléctricas y riesgos de misión crítica.</div></div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title"><span>🇵🇪</span> Marco Normativo Perú</div>
+        <div class="norm-item"><div class="norm-code">RNE A.130 — DS 006-2019</div><div class="norm-title">Requisitos de Seguridad</div><div class="norm-desc">Norma madre en Perú. Exige sistemas PCI según área, altura y uso. Referencia directa a NFPA.</div></div>
+        <div class="norm-item"><div class="norm-code">NTP 350.043-1 / NTP 350.062</div><div class="norm-title">Extintores y Gabinetes</div><div class="norm-desc">Selección, distribución y mantenimiento de extintores y gabinetes de mangueras.</div></div>
+        <div class="norm-item"><div class="norm-code">RNE EM.070</div><div class="norm-title">Instalaciones de Detección y Alarma</div><div class="norm-desc">Norma peruana para sistemas de detección. Complementada por NFPA 72.</div></div>
       </div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 13 — 2022</div>
-        <div class="norm-title">Instalación de Sistemas de Rociadores Automáticos</div>
-        <div class="norm-desc">Norma principal para diseño e instalación. Define densidades, áreas de diseño, CMDA, CMSA y ESFR. Adoptada explícitamente en el RNE.</div>
+      <div class="card mt-12">
+        <div class="card-title"><span>🚨</span> Casos Críticos — Lecciones Aprendidas</div>
+        <div class="norm-item"><div class="norm-code" style="color:#ff7675;">Ycua Bolaños — Paraguay 2004</div><div class="norm-desc">396 muertos. Puertas bloqueadas, sin rociadores, sin plan de evacuación. Protección pasiva + activa son inseparables.</div></div>
+        <div class="norm-item"><div class="norm-code" style="color:#ff7675;">Villa El Salvador — Lima 2011</div><div class="norm-desc">Nube de GLP en mercado. Sin detección ATEX, sin zona de ventilación. Clasificación de áreas peligrosas (NFPA 497).</div></div>
       </div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 14 — 2019</div>
-        <div class="norm-title">Sistemas de Montantes y Mangueras</div>
-        <div class="norm-desc">Clases I, II, III. Requiere Clase I o III en edificios >3 pisos en Perú según A.130.</div>
+      <div class="card mt-12">
+        <div class="card-title"><span>🔋</span> Riesgos Emergentes 2024-2026</div>
+        <div class="norm-item"><div class="norm-code">Baterías Li-ion (NFPA 855)</div><div class="norm-desc">Fuga térmica: gases inflamables + reignición. Requiere detección multigas y supresión específica.</div></div>
+        <div class="norm-item"><div class="norm-code">Vehículos Eléctricos</div><div class="norm-desc">Estacionamientos con EVs: rociadores de techo no son suficientes. Se estudian sistemas ESFR modificados.</div></div>
+        <div class="norm-item"><div class="norm-code">IA en Mantenimiento Predictivo</div><div class="norm-desc">Sistemas IoT que anticipan fallos antes de la prueba anual NFPA 25.</div></div>
       </div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 20 — 2022</div>
-        <div class="norm-title">Instalación de Bombas Estacionarias Contra Incendio</div>
-        <div class="norm-desc">Criterios H-Q, controladores, pruebas de aceptación y mantenimiento. Exige curva 150%/65% y churn 140%.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 7: EXTINTORES -->
+<div id="extintores" class="tab-panel">
+  <div class="section-header">
+    <h2>🧯 Cálculo de Extintores — NFPA 10 / NTP 350.043-1</h2>
+    <p>Número, tipo, potencial extintor y distribución según clasificación de riesgo y clase de fuego</p>
+  </div>
+  <div class="grid-2">
+    <div>
+      <div class="card">
+        <div class="card-title"><span>🏢</span> Datos del Local</div>
+        <div class="form-group">
+          <label>Clasificación de Riesgo</label>
+          <select id="extRiesgo" onchange="calcExtintores()">
+            <option value="ligero">Riesgo Ligero (Light Hazard)</option>
+            <option value="ordinario" selected>Riesgo Ordinario (Ordinary Hazard)</option>
+            <option value="extra">Riesgo Extra (Extra Hazard)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Clase de Fuego Predominante</label>
+          <select id="extClaseFuego" onchange="calcExtintores()">
+            <option value="A">Clase A — Sólidos comunes (madera, papel, tela)</option>
+            <option value="B">Clase B — Líquidos y gases inflamables</option>
+            <option value="C">Clase C — Equipos eléctricos energizados</option>
+            <option value="AB">Clase A+B — Mixto sólidos + líquidos</option>
+            <option value="ABC">Clase A+B+C — Uso general</option>
+            <option value="K">Clase K — Cocinas / aceites vegetales</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Área total del local (m²)</label>
+            <input type="number" id="extArea" value="500" oninput="calcExtintores()">
+          </div>
+          <div class="form-group">
+            <label>Número de pisos</label>
+            <input type="number" id="extPisos" value="1" min="1" oninput="calcExtintores()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Potencial extintor seleccionado</label>
+          <select id="extPotencial" onchange="calcExtintores()">
+            <option value="1A">1-A (2.5 kg PQS)</option>
+            <option value="2A">2-A (4 kg PQS)</option>
+            <option value="4A" selected>4-A (6 kg PQS) — más común</option>
+            <option value="6A">6-A (9 kg PQS)</option>
+            <option value="10A">10-A (12 kg PQS)</option>
+            <option value="20B">20-B (CO₂ 5 kg)</option>
+            <option value="40B">40-B (CO₂ 10 kg / PQS 6 kg)</option>
+            <option value="80B">80-B (PQS 9 kg)</option>
+          </select>
+        </div>
+        <button class="btn btn-fire btn-block" onclick="calcExtintores()">▶ Calcular</button>
       </div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 25 — 2023</div>
-        <div class="norm-title">Inspección, Prueba y Mantenimiento</div>
-        <div class="norm-desc">Programas de mantenimiento para rociadores, montantes, bombas y válvulas. Base para contratos O&M.</div>
-      </div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 72 — 2022</div>
-        <div class="norm-title">Código Nacional de Alarma de Incendio y Señalización</div>
-        <div class="norm-desc">Diseño de detectores, notificadores, audio-evacuación. Énfasis en inteligibilidad (STI ≥ 0.45) y espacios ADS.</div>
-      </div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 101 — 2021</div>
-        <div class="norm-title">Código de Seguridad Humana (Life Safety Code)</div>
-        <div class="norm-desc">Medios de egreso, distancias de viaje, señalización y diseño prestacional (PBD). Referencia para ASET/RSET.</div>
-      </div>
-      <div class="norm-item">
-        <div class="norm-code">NFPA 2001 / 770</div>
-        <div class="norm-title">Agentes Limpios / Sistemas Híbridos</div>
-        <div class="norm-desc">Para CPDs, salas eléctricas y riesgos de misión crítica. NFPA 770: sistemas de niebla de agua + inerte.</div>
+
+      <div class="card mt-12">
+        <div class="card-title"><span>📊</span> Resultados NFPA 10 / NTP 350.043-1</div>
+        <div class="result-box">
+          <div class="result-row"><span class="result-label">Área máx. por extintor</span><span class="result-value water" id="r_ext_area_max">—</span></div>
+          <div class="result-row"><span class="result-label">Distancia máx. de recorrido</span><span class="result-value water" id="r_ext_dist">—</span></div>
+          <div class="result-row"><span class="result-label">Potencial mínimo requerido</span><span class="result-value" id="r_ext_pot_min">—</span></div>
+          <div class="result-row"><span class="result-label">N° extintores por piso</span><span class="result-value danger" id="r_ext_n_piso">—</span></div>
+          <div class="result-row"><span class="result-label">N° extintores TOTAL</span><span class="result-value danger" id="r_ext_total">—</span></div>
+          <div class="result-row"><span class="result-label">Agente recomendado</span><span class="result-value amber" id="r_ext_agente">—</span></div>
+        </div>
+        <div id="extAlert" class="alert mt-12"></div>
       </div>
     </div>
 
     <div>
       <div class="card">
-        <div class="card-title"><span class="icon">🇵🇪</span> Marco Normativo Perú — RNE / NTP / INDECI</div>
-        <div class="norm-item">
-          <div class="norm-code">RNE A.130 — DS 006-2019</div>
-          <div class="norm-title">Requisitos de Seguridad</div>
-          <div class="norm-desc">Norma madre en Perú. Exige sistemas PCI según área, altura y uso. Referencia directa a NFPA para instalaciones.</div>
-        </div>
-        <div class="norm-item">
-          <div class="norm-code">NTP 350.043-1 / NTP 350.062</div>
-          <div class="norm-title">Extintores y Gabinetes</div>
-          <div class="norm-desc">NTP 350.043-1: selección, distribución y mantenimiento de extintores. NTP 350.062: gabinetes de mangueras.</div>
-        </div>
-        <div class="norm-item">
-          <div class="norm-code">D.S. 042-F / INDECI</div>
-          <div class="norm-title">Reglamento de Seguridad Industrial</div>
-          <div class="norm-desc">Aplicable a instalaciones industriales. Complementa A.130 en plantas de proceso.</div>
-        </div>
-        <div class="norm-item">
-          <div class="norm-code">RNE EM.070</div>
-          <div class="norm-title">Instalaciones de Detección y Alarma</div>
-          <div class="norm-desc">Norma peruana para sistemas de detección. Complementada por NFPA 72 para proyectos de mayor complejidad.</div>
+        <div class="card-title"><span>🔥</span> Referencia — Clases de Fuego</div>
+        <table class="data-table">
+          <thead><tr><th>Clase</th><th>Tipo de combustible</th><th>Agente recomendado</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pill pill-amber">Clase A</span></td><td>Madera, papel, tela, plástico</td><td>PQS, Agua, Espuma</td></tr>
+            <tr><td><span class="pill pill-fire">Clase B</span></td><td>Gasolina, aceite, gas LP, solventes</td><td>PQS, CO₂, Espuma</td></tr>
+            <tr><td><span class="pill pill-water">Clase C</span></td><td>Equipos eléctricos energizados</td><td>CO₂, PQS (no agua)</td></tr>
+            <tr><td><span class="pill pill-safe">Clase D</span></td><td>Metales combustibles (Mg, Ti, Na)</td><td>Agente especial Clase D</td></tr>
+            <tr><td><span class="pill pill-amber">Clase K</span></td><td>Aceites y grasas vegetales/animales</td><td>Agente húmedo Clase K</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card mt-12">
+        <div class="card-title"><span>📐</span> Áreas y Distancias NFPA 10 (Tabla 6.2.1)</div>
+        <table class="data-table">
+          <thead><tr><th>Riesgo</th><th>Área máx/extintor</th><th>Dist. recorrido</th><th>Pot. mín. Clase A</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pill pill-safe">Ligero</span></td><td>279 m²</td><td>22.9 m</td><td>2-A</td></tr>
+            <tr><td><span class="pill pill-amber">Ordinario</span></td><td>139 m²</td><td>22.9 m</td><td>2-A</td></tr>
+            <tr><td><span class="pill pill-fire">Extra</span></td><td>93 m²</td><td>22.9 m</td><td>4-A</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:14px;">
+          <div class="card-title" style="margin-bottom:10px;"><span>⚖️</span> Equivalencias Potencial Extintor Clase A</div>
+          <table class="data-table">
+            <thead><tr><th>Potencial</th><th>Capacidad aprox.</th><th>Cobertura</th></tr></thead>
+            <tbody>
+              <tr><td>1-A</td><td>2.5 kg PQS / 9 L agua</td><td>279 m² (riesgo ligero)</td></tr>
+              <tr><td>2-A</td><td>4 kg PQS / 18 L agua</td><td>279 m² (ordinario)</td></tr>
+              <tr><td>4-A</td><td>6–9 kg PQS</td><td>139 m² (extra) / 279 m²</td></tr>
+              <tr><td>6-A</td><td>9–12 kg PQS</td><td>Riesgos especiales</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
       <div class="card mt-12">
-        <div class="card-title"><span class="icon">🚨</span> Casos Críticos — Lecciones Aprendidas</div>
+        <div class="card-title"><span>📋</span> Requisitos NTP 350.043-1 (Perú)</div>
         <div class="norm-item">
-          <div class="norm-code" style="color:#ff7675;">Ycua Bolaños — Paraguay 2004</div>
-          <div class="norm-desc">396 muertos. Fallas: puertas bloqueadas, sin rociadores, sin plan de evacuación. Énfasis: protección pasiva + activa integrada son inseparables.</div>
+          <div class="norm-code">Ubicación y señalización</div>
+          <div class="norm-desc">Extintores en lugares visibles, accesibles y señalizados. Parte superior del extintor a máx. 1.50 m del piso. Señal fotoluminiscente obligatoria.</div>
         </div>
         <div class="norm-item">
-          <div class="norm-code" style="color:#ff7675;">Villa El Salvador — Lima 2011</div>
-          <div class="norm-desc">Nube de GLP en mercado. Sin detección ATEX, sin zona de ventilación. Énfasis: clasificación de áreas peligrosas (NFPA 497 / NEC).</div>
+          <div class="norm-code">Inspección mensual</div>
+          <div class="norm-desc">Verificar presión, seguro, pasador, etiqueta y accesibilidad. Registrar en tarjeta de control.</div>
         </div>
         <div class="norm-item">
-          <div class="norm-code" style="color:var(--ember);">Incendio CPD Lima — 2019</div>
-          <div class="norm-desc">Fallo de sistema halón obsoleto. Lección: sistemas de agentes limpios deben renovarse según NFPA 2001 y reemplazar halocarbonos ODC.</div>
-        </div>
-      </div>
-
-      <div class="card mt-12">
-        <div class="card-title"><span class="icon">🔋</span> Riesgos Emergentes 2024-2026</div>
-        <div class="norm-item">
-          <div class="norm-code">Baterías Li-ion (NFPA 855)</div>
-          <div class="norm-desc">Fuga térmica: gases inflamables + reignición. Requiere detección multigas, supresión específica y ventilación forzada. NFPA 855 ed. 2023.</div>
+          <div class="norm-code">Mantenimiento anual</div>
+          <div class="norm-desc">Prueba hidrostática cada 5 años para cilindros de acero, cada 3 para CO₂. Recarga según fabricante.</div>
         </div>
         <div class="norm-item">
-          <div class="norm-code">Vehículos Eléctricos</div>
-          <div class="norm-desc">Estacionamientos con EVs: rociadores de techo no son suficientes. Se estudia supresión por inundación de piso / sistemas ESFR modificados.</div>
-        </div>
-        <div class="norm-item">
-          <div class="norm-code">IA en Mantenimiento Predictivo</div>
-          <div class="norm-desc">Sistemas que correlacionan datos IoT de válvulas, flujos y presiones para anticipar fallos antes de la prueba anual NFPA 25.</div>
+          <div class="norm-code">Extintores sobre ruedas</div>
+          <div class="norm-desc">Obligatorios en riesgos extra y áreas con fuegos Clase B de gran magnitud (> 40-B en área única).</div>
         </div>
       </div>
     </div>
@@ -788,21 +609,70 @@
 </main>
 
 <script>
-// ============================================================
-// UTILITIES
-// ============================================================
 function showTab(id) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const idx = ['hrr','hidro','rociadores','bombas','evacuacion','normas'].indexOf(id);
+  const idx = ['hrr','hidro','rociadores','bombas','evacuacion','extintores','normas'].indexOf(id);
   document.querySelectorAll('.tab-btn')[idx].classList.add('active');
 }
 
 // ============================================================
-// TAB 1: HRR
+// TAB 7: EXTINTORES — NFPA 10 / NTP 350.043-1
 // ============================================================
-const alphaMap = { '0.00293':0.00293,'0.01172':0.01172,'0.02344':0.02344,'0.09376':0.09376 };
+const extData = {
+  ligero:   { areaPorExt: 279, dist: 22.9, potMinA: '2-A', potMinB: '10-B' },
+  ordinario:{ areaPorExt: 139, dist: 22.9, potMinA: '2-A', potMinB: '20-B' },
+  extra:    { areaPorExt: 93,  dist: 22.9, potMinA: '4-A', potMinB: '40-B' }
+};
+const agenteMap = {
+  A:   { agente: 'PQS ABC / Agua presurizada', nota: 'No usar agua en presencia de equipos eléctricos.' },
+  B:   { agente: 'PQS BC / CO₂',               nota: 'CO₂ ideal para áreas cerradas. PQS para exteriores.' },
+  C:   { agente: 'CO₂ / PQS BC',               nota: 'Nunca usar agua. CO₂ es no conductor y no daña equipos.' },
+  AB:  { agente: 'PQS ABC',                     nota: 'PQS ABC cubre ambas clases. Verificar compatibilidad con equipos.' },
+  ABC: { agente: 'PQS ABC (Uso general)',        nota: 'El más versátil. Estándar en la mayoría de edificaciones.' },
+  K:   { agente: 'Agente húmedo Clase K',        nota: 'Obligatorio en cocinas comerciales. No reemplazable por PQS.' }
+};
+
+function calcExtintores() {
+  const riesgo  = document.getElementById('extRiesgo').value;
+  const clase   = document.getElementById('extClaseFuego').value;
+  const area    = parseFloat(document.getElementById('extArea').value);
+  const pisos   = parseInt(document.getElementById('extPisos').value);
+  const potSel  = document.getElementById('extPotencial').value;
+  const d       = extData[riesgo];
+  const ag      = agenteMap[clase];
+
+  // Área por piso
+  const areaPiso = area / pisos;
+  // N° extintores por piso (mínimo 1)
+  const nPiso = Math.max(1, Math.ceil(areaPiso / d.areaPorExt));
+  const nTotal = nPiso * pisos;
+
+  // Verificar potencial seleccionado vs mínimo requerido
+  const potValores = {'1-A':1,'2-A':2,'4-A':4,'6-A':6,'10-A':10,'20-B':20,'40-B':40,'80-B':80};
+  const potReqNum  = parseInt(d.potMinA.replace('-A',''));
+  const potSelStr  = potSel.includes('A') ? potSel : null;
+  const potSelNum  = potSelStr ? parseInt(potSelStr.replace('-A','')) : null;
+  const cumplePot  = potSelStr ? potSelNum >= potReqNum : true; // B/CO2 se valida diferente
+
+  document.getElementById('r_ext_area_max').textContent = d.areaPorExt + ' m² por extintor';
+  document.getElementById('r_ext_dist').textContent     = d.dist + ' m máximo recorrido';
+  document.getElementById('r_ext_pot_min').textContent  = 'Clase A: ' + d.potMinA + ' | Clase B: ' + d.potMinB;
+  document.getElementById('r_ext_n_piso').textContent   = nPiso + ' extintor(es) por piso';
+  document.getElementById('r_ext_total').textContent    = nTotal + ' extintores en total';
+  document.getElementById('r_ext_agente').textContent   = ag.agente;
+
+  const alertEl = document.getElementById('extAlert');
+  if (!cumplePot && potSelStr) {
+    alertEl.className = 'alert alert-danger';
+    alertEl.textContent = '⚠️ Potencial seleccionado (' + potSel + ') menor al requerido (' + d.potMinA + ') para riesgo ' + riesgo + '. Seleccione un extintor de mayor capacidad.';
+  } else {
+    alertEl.className = 'alert alert-safe';
+    alertEl.textContent = '✅ ' + ag.nota + ' — ' + nTotal + ' extintor(es) para ' + area + ' m² en ' + pisos + ' piso(s).';
+  }
+}
+
 function updateAlpha() {
   const sel = document.getElementById('hrrClass').value;
   document.getElementById('alphaCustomGroup').style.display = sel === 'custom' ? 'block' : 'none';
@@ -811,44 +681,24 @@ function updateAlpha() {
 
 function calcHRR() {
   const sel = document.getElementById('hrrClass').value;
-  const alpha = sel === 'custom'
-    ? parseFloat(document.getElementById('alphaCustom').value)
-    : parseFloat(sel);
+  const alpha = sel === 'custom' ? parseFloat(document.getElementById('alphaCustom').value) : parseFloat(sel);
   const tMax = parseInt(document.getElementById('tMax').value);
   const Qd = parseFloat(document.getElementById('qFlashover').value);
   const A = parseFloat(document.getElementById('aLocal').value);
-  const H = parseFloat(document.getElementById('hLocal').value);
-
-  // t to reach Qd
   const tFo = Math.sqrt(Qd / alpha);
   const t1mw = Math.sqrt(1000 / alpha);
   const Qtmax = alpha * tMax * tMax;
-
-  // Thomas flashover criterion: Q_fo = 7.8*A + 378*sqrt(A_v * h_v)
-  // Simplified: assume window 15% of floor area, h=1.5m
-  const Av = 0.15 * A;
-  const hv = 1.5;
+  const Av = 0.15 * A; const hv = 1.5;
   const Q_thomas = 7.8 * A + 378 * Math.sqrt(Av * hv);
-
   document.getElementById('r_alpha').textContent = alpha.toFixed(5) + ' kW/s²';
   document.getElementById('r_t1mw').textContent = isFinite(t1mw) ? t1mw.toFixed(0) + ' s (' + (t1mw/60).toFixed(1) + ' min)' : '—';
   document.getElementById('r_tfo').textContent = isFinite(tFo) ? tFo.toFixed(0) + ' s (' + (tFo/60).toFixed(1) + ' min)' : '—';
   document.getElementById('r_qtmax').textContent = Qtmax.toFixed(0) + ' kW';
   document.getElementById('r_thomas').textContent = Q_thomas.toFixed(0) + ' kW';
-
   const alertEl = document.getElementById('hrrAlert');
-  if (tFo < 120) {
-    alertEl.style.display = 'block';
-    alertEl.className = 'alert alert-danger mt-12';
-    alertEl.textContent = '⚠️ FLASHOVER RÁPIDO: el fuego alcanza la potencia de diseño en menos de 2 minutos. Se requieren rociadores de respuesta rápida (RTI ≤ 50) y detectores de haz o ASD.';
-  } else if (tFo < 300) {
-    alertEl.style.display = 'block';
-    alertEl.className = 'alert alert-warning mt-12';
-    alertEl.textContent = '⚡ Flashover en ' + tFo.toFixed(0) + ' s. Asegure detección temprana y tiempo de pre-evacuación compatible con ASET.';
-  } else {
-    alertEl.style.display = 'none';
-  }
-
+  if (tFo < 120) { alertEl.style.display='block'; alertEl.className='alert alert-danger mt-12'; alertEl.textContent='⚠️ FLASHOVER RÁPIDO: el fuego alcanza la potencia de diseño en menos de 2 minutos. Se requieren rociadores de respuesta rápida (RTI ≤ 50).'; }
+  else if (tFo < 300) { alertEl.style.display='block'; alertEl.className='alert alert-warning mt-12'; alertEl.textContent='⚡ Flashover en '+tFo.toFixed(0)+' s. Asegure detección temprana compatible con ASET.'; }
+  else { alertEl.style.display='none'; }
   drawHRRChart(alpha, tMax, Qd, t1mw, tFo);
 }
 
@@ -856,304 +706,136 @@ function drawHRRChart(alpha, tMax, Qd, t1mw, tFo) {
   const canvas = document.getElementById('hrrChart');
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
-  const pad = { l: 60, r: 20, t: 20, b: 50 };
-  const plotW = W - pad.l - pad.r;
-  const plotH = H - pad.t - pad.b;
-
-  ctx.clearRect(0, 0, W, H);
-
-  // Background
-  ctx.fillStyle = 'rgba(0,0,0,0.2)';
-  ctx.fillRect(0, 0, W, H);
-
-  // Compute max Q
-  const Qmax = Math.max(alpha * tMax * tMax * 1.15, Qd * 1.3, 1100);
-  const tScale = plotW / tMax;
-  const qScale = plotH / Qmax;
-
-  function px(t) { return pad.l + t * tScale; }
-  function py(q) { return pad.t + plotH - q * qScale; }
-
-  // Grid
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-  ctx.lineWidth = 1;
-  const nGridX = 6, nGridY = 5;
-  for (let i = 0; i <= nGridX; i++) {
-    const x = pad.l + i * plotW / nGridX;
-    ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t + plotH); ctx.stroke();
-    ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText((tMax * i / nGridX).toFixed(0) + 's', x, pad.t + plotH + 18);
-  }
-  for (let i = 0; i <= nGridY; i++) {
-    const y = pad.t + i * plotH / nGridY;
-    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + plotW, y); ctx.stroke();
-    ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
-    ctx.fillText((Qmax * (nGridY - i) / nGridY / 1000).toFixed(1) + 'MW', pad.l - 6, y + 4);
-  }
-
-  // Axis labels
-  ctx.fillStyle = 'rgba(255,255,255,0.5)'; ctx.font = '11px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('Tiempo (s)', pad.l + plotW / 2, H - 8);
-  ctx.save(); ctx.translate(14, pad.t + plotH / 2); ctx.rotate(-Math.PI / 2);
-  ctx.fillText('HRR (kW)', 0, 0); ctx.restore();
-
-  // Flashover threshold
-  if (Qd < Qmax) {
-    ctx.strokeStyle = 'rgba(232,65,24,0.6)'; ctx.setLineDash([6, 4]); ctx.lineWidth = 1.5;
-    const yFo = py(Qd);
-    ctx.beginPath(); ctx.moveTo(pad.l, yFo); ctx.lineTo(pad.l + plotW, yFo); ctx.stroke();
-    ctx.fillStyle = '#e84118'; ctx.font = '10px sans-serif'; ctx.textAlign = 'left';
-    ctx.fillText('Q_fo = ' + Qd + ' kW', pad.l + 4, yFo - 4);
-  }
-
-  // 1 MW threshold
-  if (1000 < Qmax) {
-    ctx.strokeStyle = 'rgba(41,128,185,0.6)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1;
-    const y1mw = py(1000);
-    ctx.beginPath(); ctx.moveTo(pad.l, y1mw); ctx.lineTo(pad.l + plotW, y1mw); ctx.stroke();
-    ctx.fillStyle = '#3498db'; ctx.font = '10px sans-serif'; ctx.textAlign = 'left';
-    ctx.fillText('1 MW', pad.l + 4, y1mw - 4);
-  }
-
+  const pad = {l:60,r:20,t:20,b:50};
+  const plotW = W-pad.l-pad.r, plotH = H-pad.t-pad.b;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='rgba(0,0,0,0.2)'; ctx.fillRect(0,0,W,H);
+  const Qmax = Math.max(alpha*tMax*tMax*1.15, Qd*1.3, 1100);
+  function px(t){return pad.l+t*(plotW/tMax);}
+  function py(q){return pad.t+plotH-q*(plotH/Qmax);}
+  ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1;
+  for(let i=0;i<=6;i++){const x=pad.l+i*plotW/6; ctx.beginPath();ctx.moveTo(x,pad.t);ctx.lineTo(x,pad.t+plotH);ctx.stroke(); ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='10px sans-serif';ctx.textAlign='center';ctx.fillText((tMax*i/6).toFixed(0)+'s',x,pad.t+plotH+18);}
+  for(let i=0;i<=5;i++){const y=pad.t+i*plotH/5; ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+plotW,y);ctx.stroke(); ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='10px sans-serif';ctx.textAlign='right';ctx.fillText((Qmax*(5-i)/5/1000).toFixed(1)+'MW',pad.l-6,y+4);}
+  if(Qd<Qmax){ctx.strokeStyle='rgba(232,65,24,0.6)';ctx.setLineDash([6,4]);ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(pad.l,py(Qd));ctx.lineTo(pad.l+plotW,py(Qd));ctx.stroke();ctx.fillStyle='#e84118';ctx.font='10px sans-serif';ctx.textAlign='left';ctx.fillText('Q_fo='+Qd+'kW',pad.l+4,py(Qd)-4);}
+  if(1000<Qmax){ctx.strokeStyle='rgba(41,128,185,0.6)';ctx.setLineDash([4,3]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,py(1000));ctx.lineTo(pad.l+plotW,py(1000));ctx.stroke();}
   ctx.setLineDash([]);
-
-  // HRR curve
-  const grad = ctx.createLinearGradient(px(0), 0, px(tMax), 0);
-  grad.addColorStop(0, '#f39c12');
-  grad.addColorStop(0.5, '#e84118');
-  grad.addColorStop(1, '#8e0000');
-  ctx.strokeStyle = grad;
-  ctx.lineWidth = 2.5;
-  ctx.beginPath();
-  for (let t = 0; t <= tMax; t += tMax / 200) {
-    const q = Math.min(alpha * t * t, Qmax);
-    if (t === 0) ctx.moveTo(px(t), py(q));
-    else ctx.lineTo(px(t), py(q));
-  }
+  const grad=ctx.createLinearGradient(px(0),0,px(tMax),0);
+  grad.addColorStop(0,'#f39c12');grad.addColorStop(0.5,'#e84118');grad.addColorStop(1,'#8e0000');
+  ctx.strokeStyle=grad; ctx.lineWidth=2.5; ctx.beginPath();
+  for(let t=0;t<=tMax;t+=tMax/200){const q=Math.min(alpha*t*t,Qmax); if(t===0)ctx.moveTo(px(t),py(q));else ctx.lineTo(px(t),py(q));}
   ctx.stroke();
-
-  // Flash marker
-  if (tFo <= tMax) {
-    ctx.fillStyle = '#e84118';
-    ctx.beginPath(); ctx.arc(px(tFo), py(Qd), 5, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = '#ff7675'; ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'left';
-    ctx.fillText('⚡ t_fo=' + tFo.toFixed(0) + 's', px(tFo) + 8, py(Qd) + 4);
-  }
+  if(tFo<=tMax){ctx.fillStyle='#e84118';ctx.beginPath();ctx.arc(px(tFo),py(Qd),5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ff7675';ctx.font='bold 10px sans-serif';ctx.textAlign='left';ctx.fillText('⚡ t_fo='+tFo.toFixed(0)+'s',px(tFo)+8,py(Qd)+4);}
 }
 
-// ============================================================
-// TAB 2: HAZEN-WILLIAMS
-// ============================================================
 function calcHW() {
-  const Q = parseFloat(document.getElementById('hwQ').value); // L/min
-  const L = parseFloat(document.getElementById('hwL').value);
-  const D = parseFloat(document.getElementById('hwD').value) / 1000; // m
-  const C = parseFloat(document.getElementById('hwC').value);
-  const Leq = parseFloat(document.getElementById('hwLeq').value);
-  const Z = parseFloat(document.getElementById('hwZ').value);
-
-  const Ltotal = L + Leq;
-  const Q_m3s = Q / (1000 * 60); // m³/s
-  const A = Math.PI * D * D / 4;
-  const V = Q_m3s / A; // m/s
-
-  // H-W: hf (m/m) = 10.67 * Q^1.852 / (C^1.852 * D^4.87)
-  // Q in m³/s, D in m
-  const hf_per_m = 10.67 * Math.pow(Q_m3s, 1.852) / (Math.pow(C, 1.852) * Math.pow(D, 4.87));
-  const hf_m = hf_per_m * Ltotal;
-  const hf_kpa = hf_m * 9.81;
-  const hz_kpa = Z * 9.81;
-  const htot_kpa = hf_kpa + hz_kpa;
-  const grad = hf_kpa / Ltotal;
-
-  document.getElementById('r_vel').textContent = V.toFixed(2) + ' m/s';
-  document.getElementById('r_hf_kpa').textContent = hf_kpa.toFixed(1) + ' kPa';
-  document.getElementById('r_hf_psi').textContent = (hf_kpa / 6.895).toFixed(2) + ' psi';
-  document.getElementById('r_hz').textContent = hz_kpa.toFixed(1) + ' kPa';
-  document.getElementById('r_htot').textContent = htot_kpa.toFixed(1) + ' kPa';
-  document.getElementById('r_grad').textContent = grad.toFixed(2) + ' kPa/m';
-
-  const alertEl = document.getElementById('hwAlert');
-  if (V > 6) {
-    alertEl.style.display = 'block'; alertEl.className = 'alert alert-danger';
-    alertEl.textContent = '⚠️ Velocidad ' + V.toFixed(2) + ' m/s excede 6 m/s (NFPA 13). Aumentar diámetro.';
-  } else if (V > 4.5) {
-    alertEl.style.display = 'block'; alertEl.className = 'alert alert-warning';
-    alertEl.textContent = '⚡ Velocidad ' + V.toFixed(2) + ' m/s > 4.5 m/s. Riesgo de ruido y erosión. Se recomienda aumentar diámetro.';
-  } else {
-    alertEl.style.display = 'block'; alertEl.className = 'alert alert-safe';
-    alertEl.textContent = '✅ Velocidad ' + V.toFixed(2) + ' m/s dentro del rango recomendado.';
-  }
+  const Q=parseFloat(document.getElementById('hwQ').value);
+  const L=parseFloat(document.getElementById('hwL').value);
+  const D=parseFloat(document.getElementById('hwD').value)/1000;
+  const C=parseFloat(document.getElementById('hwC').value);
+  const Leq=parseFloat(document.getElementById('hwLeq').value);
+  const Z=parseFloat(document.getElementById('hwZ').value);
+  const Ltotal=L+Leq;
+  const Q_m3s=Q/(1000*60);
+  const A=Math.PI*D*D/4;
+  const V=Q_m3s/A;
+  const hf_per_m=10.67*Math.pow(Q_m3s,1.852)/(Math.pow(C,1.852)*Math.pow(D,4.87));
+  const hf_kpa=hf_per_m*Ltotal*9.81;
+  const hz_kpa=Z*9.81;
+  const htot_kpa=hf_kpa+hz_kpa;
+  document.getElementById('r_vel').textContent=V.toFixed(2)+' m/s';
+  document.getElementById('r_hf_kpa').textContent=hf_kpa.toFixed(1)+' kPa';
+  document.getElementById('r_hf_psi').textContent=(hf_kpa/6.895).toFixed(2)+' psi';
+  document.getElementById('r_hz').textContent=hz_kpa.toFixed(1)+' kPa';
+  document.getElementById('r_htot').textContent=htot_kpa.toFixed(1)+' kPa';
+  document.getElementById('r_grad').textContent=(hf_kpa/Ltotal).toFixed(2)+' kPa/m';
+  const alertEl=document.getElementById('hwAlert');
+  alertEl.style.display='block';
+  if(V>6){alertEl.className='alert alert-danger';alertEl.textContent='⚠️ Velocidad '+V.toFixed(2)+' m/s excede 6 m/s (NFPA 13). Aumentar diámetro.';}
+  else if(V>4.5){alertEl.className='alert alert-warning';alertEl.textContent='⚡ Velocidad '+V.toFixed(2)+' m/s > 4.5 m/s. Se recomienda aumentar diámetro.';}
+  else{alertEl.className='alert alert-safe';alertEl.textContent='✅ Velocidad '+V.toFixed(2)+' m/s dentro del rango recomendado.';}
 }
 
-// ============================================================
-// TAB 3: ROCIADORES
-// ============================================================
-const riskData = {
-  RL:   { dens: 4.1,  area: 139, rti: 'RTI ≤ 80 (Estándar)' },
-  RO1:  { dens: 6.1,  area: 139, rti: 'RTI ≤ 80 (Estándar)' },
-  RO2:  { dens: 8.2,  area: 139, rti: 'RTI ≤ 80 (Estándar)' },
-  RE1:  { dens: 12.2, area: 232, rti: 'RTI ≤ 50 (Rápida respuesta)' },
-  RE2:  { dens: 16.3, area: 232, rti: 'RTI ≤ 50 / CMSA' },
-  ESFR: { dens: 0,    area: 0,   rti: 'ESFR: K=200/360, RTI < 28' },
-  CMSA: { dens: 12.2, area: 260, rti: 'CMSA: K=160/200' }
-};
-
-function updateRisk() { calcSprinkler(); }
+const riskData={RL:{dens:4.1,area:139,rti:'RTI ≤ 80 (Estándar)'},RO1:{dens:6.1,area:139,rti:'RTI ≤ 80 (Estándar)'},RO2:{dens:8.2,area:139,rti:'RTI ≤ 80 (Estándar)'},RE1:{dens:12.2,area:232,rti:'RTI ≤ 50 (Rápida respuesta)'},RE2:{dens:16.3,area:232,rti:'RTI ≤ 50 / CMSA'},ESFR:{dens:0,area:0,rti:'ESFR: K=200/360, RTI < 28'},CMSA:{dens:12.2,area:260,rti:'CMSA: K=160/200'}};
 
 function calcSprinkler() {
-  const risk = document.getElementById('riskType').value;
-  const S = parseFloat(document.getElementById('spkS').value);
-  const L = parseFloat(document.getElementById('spkL').value);
-  const P = parseFloat(document.getElementById('spkP').value); // bar
-  const K = parseFloat(document.getElementById('spkK').value);
-  const d = riskData[risk];
-
-  const aSpk = S * L; // m²
-  const areaDis = d.area || 139;
-  const nSpk = Math.ceil(areaDis / aSpk);
-
-  // Q per sprinkler from K factor: q = K * sqrt(P) [L/min, P in bar]
-  const qSpk = K * Math.sqrt(P);
-  const densActual = qSpk / (aSpk * 1000 / 60); // mm/min — q L/min to L/(m²·min)
-  const densActualMmMin = (qSpk / aSpk); // L/(min·m²) ≈ mm/min
-  const qTotal = qSpk * nSpk;
-
-  document.getElementById('r_dens').textContent = d.dens > 0 ? d.dens + ' mm/min (req.) | ' + densActualMmMin.toFixed(1) + ' mm/min (real)' : 'Ver tablas NFPA 13 §20';
-  document.getElementById('r_area_d').textContent = areaDis + ' m²';
-  document.getElementById('r_n_spk').textContent = nSpk + ' rociadores';
-  document.getElementById('r_a_spk').textContent = aSpk.toFixed(2) + ' m²/rociador';
-  document.getElementById('r_q_spk').textContent = qSpk.toFixed(1) + ' L/min';
-  document.getElementById('r_q_total').textContent = qTotal.toFixed(0) + ' L/min (' + (qTotal / 60).toFixed(1) + ' L/s)';
-  document.getElementById('r_rti').textContent = d.rti;
-
-  const alertEl = document.getElementById('sprinkAlert');
-  if (d.dens > 0 && densActualMmMin < d.dens) {
-    alertEl.className = 'alert alert-danger';
-    alertEl.textContent = '⚠️ Densidad real (' + densActualMmMin.toFixed(1) + ' mm/min) MENOR que la requerida (' + d.dens + ' mm/min). Aumente la presión o use un rociador de mayor K.';
-  } else if (aSpk > 12.1) {
-    alertEl.className = 'alert alert-warning';
-    alertEl.textContent = '⚡ Área por rociador ' + aSpk.toFixed(1) + ' m² excede 12.1 m² (NFPA 13 máx. para riesgo ordinario). Reducir separación.';
-  } else {
-    alertEl.className = 'alert alert-safe';
-    alertEl.textContent = '✅ Diseño dentro de parámetros NFPA 13.';
-  }
+  const risk=document.getElementById('riskType').value;
+  const S=parseFloat(document.getElementById('spkS').value);
+  const L=parseFloat(document.getElementById('spkL').value);
+  const P=parseFloat(document.getElementById('spkP').value);
+  const K=parseFloat(document.getElementById('spkK').value);
+  const d=riskData[risk];
+  const aSpk=S*L;
+  const areaDis=d.area||139;
+  const nSpk=Math.ceil(areaDis/aSpk);
+  const qSpk=K*Math.sqrt(P);
+  const densActualMmMin=(qSpk/aSpk);
+  const qTotal=qSpk*nSpk;
+  document.getElementById('r_dens').textContent=d.dens>0?d.dens+' mm/min (req.) | '+densActualMmMin.toFixed(1)+' mm/min (real)':'Ver tablas NFPA 13 §20';
+  document.getElementById('r_area_d').textContent=areaDis+' m²';
+  document.getElementById('r_n_spk').textContent=nSpk+' rociadores';
+  document.getElementById('r_a_spk').textContent=aSpk.toFixed(2)+' m²/rociador';
+  document.getElementById('r_q_spk').textContent=qSpk.toFixed(1)+' L/min';
+  document.getElementById('r_q_total').textContent=qTotal.toFixed(0)+' L/min ('+( qTotal/60).toFixed(1)+' L/s)';
+  document.getElementById('r_rti').textContent=d.rti;
+  const alertEl=document.getElementById('sprinkAlert');
+  if(d.dens>0&&densActualMmMin<d.dens){alertEl.className='alert alert-danger';alertEl.textContent='⚠️ Densidad real ('+densActualMmMin.toFixed(1)+' mm/min) MENOR que la requerida ('+d.dens+' mm/min). Aumente presión o use mayor K.';}
+  else if(aSpk>12.1){alertEl.className='alert alert-warning';alertEl.textContent='⚡ Área por rociador '+aSpk.toFixed(1)+' m² excede 12.1 m² (NFPA 13). Reducir separación.';}
+  else{alertEl.className='alert alert-safe';alertEl.textContent='✅ Diseño dentro de parámetros NFPA 13.';}
 }
 
-// ============================================================
-// TAB 4: BOMBAS
-// ============================================================
 function calcPump() {
-  const Q = parseFloat(document.getElementById('pumpQ').value);
-  const H = parseFloat(document.getElementById('pumpH').value);
-  const Hs = parseFloat(document.getElementById('pumpHs').value);
-  const Qn = parseFloat(document.getElementById('pumpQn').value);
-  const Hn = parseFloat(document.getElementById('pumpHn').value);
-  const eff = parseFloat(document.getElementById('pumpEff').value) / 100;
-
-  // BHP = (Q * H) / (eff * 60000) [kW]  Q in L/min, H in kPa
-  const bhp = (Q / 60000) * H / eff;
-  const motorKW = bhp * 1.25; // 25% safety factor
-  const bhpHP = bhp * 1.341;
-
-  const q150 = Qn * 1.5;
-  const h150min = Hn * 0.65;
-
-  document.getElementById('r_bhp').textContent = bhp.toFixed(1) + ' kW';
-  document.getElementById('r_bhp_hp').textContent = bhpHP.toFixed(1) + ' HP';
-  document.getElementById('r_motor').textContent = motorKW.toFixed(1) + ' kW (≥' + motorKW.toFixed(0) + ' kW)';
-  document.getElementById('r_q150').textContent = q150.toFixed(0) + ' L/min';
-  document.getElementById('r_h150').textContent = h150min.toFixed(0) + ' kPa (' + (h150min / 6.895).toFixed(0) + ' psi)';
-
-  // Checks
-  const ratio = Q / Qn;
-  const checks = [
-    { label: 'Punto de operación en rango (90–140% Qn)', ok: ratio >= 0.90 && ratio <= 1.40, val: (ratio * 100).toFixed(0) + '% Qn' },
-    { label: 'Presión fuente + bomba ≥ presión diseño', ok: Hs + Hn >= H, val: (Hs + Hn).toFixed(0) + ' kPa' },
-    { label: 'BHP calculado', ok: true, val: bhp.toFixed(1) + ' kW', neutral: true },
-    { label: 'Motor sobredimensionado (×1.25)', ok: motorKW >= bhp * 1.15, val: motorKW.toFixed(1) + ' kW' },
+  const Q=parseFloat(document.getElementById('pumpQ').value);
+  const H=parseFloat(document.getElementById('pumpH').value);
+  const Hs=parseFloat(document.getElementById('pumpHs').value);
+  const Qn=parseFloat(document.getElementById('pumpQn').value);
+  const Hn=parseFloat(document.getElementById('pumpHn').value);
+  const eff=parseFloat(document.getElementById('pumpEff').value)/100;
+  const bhp=(Q/60000)*H/eff;
+  const motorKW=bhp*1.25;
+  const bhpHP=bhp*1.341;
+  document.getElementById('r_bhp').textContent=bhp.toFixed(1)+' kW';
+  document.getElementById('r_bhp_hp').textContent=bhpHP.toFixed(1)+' HP';
+  document.getElementById('r_motor').textContent=motorKW.toFixed(1)+' kW';
+  document.getElementById('r_q150').textContent=(Qn*1.5).toFixed(0)+' L/min';
+  document.getElementById('r_h150').textContent=(Hn*0.65).toFixed(0)+' kPa';
+  const ratio=Q/Qn;
+  const checks=[
+    {label:'Punto de operación en rango (90–140% Qn)',ok:ratio>=0.90&&ratio<=1.40,val:(ratio*100).toFixed(0)+'% Qn'},
+    {label:'Presión fuente + bomba ≥ presión diseño',ok:Hs+Hn>=H,val:(Hs+Hn).toFixed(0)+' kPa'},
+    {label:'Motor sobredimensionado (×1.25)',ok:motorKW>=bhp*1.15,val:motorKW.toFixed(1)+' kW'},
   ];
-
-  let html = '';
-  checks.forEach(c => {
-    const cls = c.neutral ? 'pill-amber' : (c.ok ? 'pill-safe' : 'pill-fire');
-    const icon = c.neutral ? '📌' : (c.ok ? '✅' : '❌');
-    html += `<div class="result-row">
-      <span class="result-label">${icon} ${c.label}</span>
-      <span class="pill ${cls}">${c.val}</span>
-    </div>`;
-  });
-  document.getElementById('pumpChecks').innerHTML = html;
+  let html='';
+  checks.forEach(c=>{const cls=c.ok?'pill-safe':'pill-fire';const icon=c.ok?'✅':'❌';html+=`<div class="result-row"><span class="result-label">${icon} ${c.label}</span><span class="pill ${cls}">${c.val}</span></div>`;});
+  document.getElementById('pumpChecks').innerHTML=html;
 }
 
-// ============================================================
-// TAB 5: EVACUACIÓN
-// ============================================================
-const preEvacTimes = { oficina: 60, hotel: 180, reunion: 90, hospital: 240, educacion: 120, industria: 90 };
 function calcEvac() {
-  const occ = document.getElementById('occType').value;
-  const pax = parseInt(document.getElementById('evacPax').value);
-  const salidas = parseInt(document.getElementById('evacSalidas').value);
-  const ancho = parseFloat(document.getElementById('evacAncho').value);
-  const dist = parseFloat(document.getElementById('evacDist').value);
-  const tpre = parseInt(document.getElementById('evacTpre').value);
-  const aset = parseInt(document.getElementById('evacAset').value);
-
-  // Capacity: ~80 p/(min·m) per SFPE / NFPA 101
-  const capTotal = salidas * ancho * 80; // persons/min
-  const tMov = (pax / capTotal) * 60 + (dist / 1.2); // s
-  const rset = tpre + tMov;
-  const margin = aset - rset;
-  const factor = aset / rset;
-
-  document.getElementById('r_cap').textContent = capTotal.toFixed(0) + ' p/min';
-  document.getElementById('r_tmov').textContent = tMov.toFixed(0) + ' s (' + (tMov / 60).toFixed(1) + ' min)';
-  document.getElementById('r_rset').textContent = rset.toFixed(0) + ' s (' + (rset / 60).toFixed(1) + ' min)';
-  document.getElementById('r_aset').textContent = aset + ' s (' + (aset / 60).toFixed(1) + ' min)';
-  document.getElementById('r_margin').textContent = margin.toFixed(0) + ' s (factor ' + factor.toFixed(2) + ')';
-
-  const alertEl = document.getElementById('evacAlert');
-  if (margin < 0) {
-    alertEl.className = 'alert alert-danger';
-    alertEl.textContent = '🚨 RSET > ASET: el tiempo de evacuación supera el tiempo disponible. Se requieren más salidas, mayor ASET (rociadores, extracción de humos) o reducir pre-evacuación (detección automática).';
-  } else if (factor < 1.5) {
-    alertEl.className = 'alert alert-warning';
-    alertEl.textContent = '⚠️ Margen insuficiente (factor ' + factor.toFixed(2) + ' < 1.5). NFPA 101 PBD recomienda ASET/RSET ≥ 1.5 como mínimo aceptable.';
-  } else {
-    alertEl.className = 'alert alert-safe';
-    alertEl.textContent = '✅ Diseño seguro: ASET/RSET = ' + factor.toFixed(2) + ' ≥ 1.5. Tiempo de margen: ' + margin.toFixed(0) + ' s.';
-  }
-
-  // Progress bar
-  const pctRset = Math.min((rset / aset) * 100, 100);
-  const pctAset = 100;
-  const barColor = margin < 0 ? '#e84118' : (factor < 1.5 ? '#f39c12' : '#27ae60');
-  document.getElementById('evacBar').innerHTML = `
-    <div style="position:relative; margin-bottom:8px;">
-      <div class="progress-wrap">
-        <div class="progress-bar" style="width:100%; background:rgba(39,174,96,0.3);"></div>
-      </div>
-      <div class="progress-wrap" style="margin-top:4px;">
-        <div class="progress-bar" style="width:${pctRset.toFixed(0)}%; background:${barColor};"></div>
-      </div>
-      <div style="display:flex; justify-content:space-between; font-size:0.72rem; color:var(--text-muted); margin-top:4px;">
-        <span style="color:#55efc4;">ASET: ${aset}s</span>
-        <span style="color:${barColor};">RSET: ${rset.toFixed(0)}s</span>
-      </div>
-    </div>`;
+  const pax=parseInt(document.getElementById('evacPax').value);
+  const salidas=parseInt(document.getElementById('evacSalidas').value);
+  const ancho=parseFloat(document.getElementById('evacAncho').value);
+  const dist=parseFloat(document.getElementById('evacDist').value);
+  const tpre=parseInt(document.getElementById('evacTpre').value);
+  const aset=parseInt(document.getElementById('evacAset').value);
+  const capTotal=salidas*ancho*80;
+  const tMov=(pax/capTotal)*60+(dist/1.2);
+  const rset=tpre+tMov;
+  const margin=aset-rset;
+  const factor=aset/rset;
+  document.getElementById('r_cap').textContent=capTotal.toFixed(0)+' p/min';
+  document.getElementById('r_tmov').textContent=tMov.toFixed(0)+' s ('+( tMov/60).toFixed(1)+' min)';
+  document.getElementById('r_rset').textContent=rset.toFixed(0)+' s ('+( rset/60).toFixed(1)+' min)';
+  document.getElementById('r_aset').textContent=aset+' s ('+( aset/60).toFixed(1)+' min)';
+  document.getElementById('r_margin').textContent=margin.toFixed(0)+' s (factor '+factor.toFixed(2)+')';
+  const alertEl=document.getElementById('evacAlert');
+  if(margin<0){alertEl.className='alert alert-danger';alertEl.textContent='🚨 RSET > ASET: evacuación insegura. Agregar salidas, mejorar ASET con rociadores o reducir pre-evacuación.';}
+  else if(factor<1.5){alertEl.className='alert alert-warning';alertEl.textContent='⚠️ Margen insuficiente (factor '+factor.toFixed(2)+' < 1.5). NFPA 101 PBD recomienda ≥ 1.5.';}
+  else{alertEl.className='alert alert-safe';alertEl.textContent='✅ Diseño seguro: ASET/RSET = '+factor.toFixed(2)+'. Margen: '+margin.toFixed(0)+' s.';}
+  const pctRset=Math.min((rset/aset)*100,100);
+  const barColor=margin<0?'#e84118':(factor<1.5?'#f39c12':'#27ae60');
+  document.getElementById('evacBar').innerHTML=`<div><div class="progress-wrap"><div class="progress-bar" style="width:100%;background:rgba(39,174,96,0.3);"></div></div><div class="progress-wrap" style="margin-top:4px;"><div class="progress-bar" style="width:${pctRset.toFixed(0)}%;background:${barColor};"></div></div><div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text-muted);margin-top:4px;"><span style="color:#55efc4;">ASET: ${aset}s</span><span style="color:${barColor};">RSET: ${rset.toFixed(0)}s</span></div></div>`;
 }
 
-// ============================================================
-// INIT
-// ============================================================
-window.onload = function() {
-  calcHRR();
-  calcHW();
-  calcSprinkler();
-  calcPump();
-  calcEvac();
-};
+window.onload=function(){calcHRR();calcHW();calcSprinkler();calcPump();calcEvac();calcExtintores();};
 </script>
 </body>
 </html>
