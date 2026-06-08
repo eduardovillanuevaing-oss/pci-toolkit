@@ -100,6 +100,29 @@
   .text-sm { font-size: 0.8rem; color: var(--text-muted); }
   .progress-wrap { background: rgba(255,255,255,0.07); border-radius: 6px; height: 8px; overflow: hidden; margin-top: 6px; }
   .progress-bar { height: 100%; border-radius: 6px; transition: width 0.5s ease; }
+
+  /* BOTÓN REPORTE */
+  .btn-report { background: linear-gradient(135deg, #6c3483, #9b59b6); color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; }
+  .btn-report:hover { filter: brightness(1.15); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(155,89,182,0.4); }
+  .report-divider { border: none; border-top: 1px dashed rgba(155,89,182,0.3); margin: 24px 0 0; }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 500; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #1a2744; border: 1px solid rgba(155,89,182,0.4); border-radius: 14px; padding: 28px; width: 100%; max-width: 480px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+  .modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; color: #c39bd3; display: flex; align-items: center; gap: 8px; }
+  .modal .form-group { margin-bottom: 13px; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+  .btn-cancel { background: rgba(255,255,255,0.08); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1); }
+  .btn-cancel:hover { background: rgba(255,255,255,0.13); color: var(--text); }
+
+  /* PRINT STYLES */
+  @media print {
+    body { background: #fff !important; color: #000 !important; }
+    .print-only { display: block !important; }
+    .no-print { display: none !important; }
+    .print-page { padding: 0; margin: 0; }
+  }
 </style>
 </head>
 <body>
@@ -194,6 +217,8 @@
       </div>
     </div>
   </div>
+  <hr class="report-divider">
+  <button class="btn btn-report btn-block" onclick="abrirModal('hrr')">🖨️ Generar Reporte PDF — HRR / αt²</button>
 </div>
 
 <!-- TAB 2: HIDRÁULICA -->
@@ -260,6 +285,8 @@
       </div>
     </div>
   </div>
+  <hr class="report-divider">
+  <button class="btn btn-report btn-block" onclick="abrirModal('hidro')">🖨️ Generar Reporte PDF — Hidráulica</button>
 </div>
 
 <!-- TAB 3: ROCIADORES -->
@@ -321,6 +348,8 @@
       </tbody>
     </table>
   </div>
+  <hr class="report-divider">
+  <button class="btn btn-report btn-block" onclick="abrirModal('rociadores')">🖨️ Generar Reporte PDF — Rociadores</button>
 </div>
 
 <!-- TAB 4: BOMBAS -->
@@ -374,6 +403,8 @@
       </tbody>
     </table>
   </div>
+  <hr class="report-divider">
+  <button class="btn btn-report btn-block" onclick="abrirModal('bombas')">🖨️ Generar Reporte PDF — Bombas BCI</button>
 </div>
 
 <!-- TAB 5: EVACUACIÓN -->
@@ -433,6 +464,8 @@
       </table>
     </div>
   </div>
+  <hr class="report-divider">
+  <button class="btn btn-report btn-block" onclick="abrirModal('evacuacion')">🖨️ Generar Reporte PDF — Evacuación</button>
 </div>
 
 <!-- TAB 6: NORMAS -->
@@ -470,6 +503,21 @@
         <div class="norm-item"><div class="norm-code">Vehículos Eléctricos</div><div class="norm-desc">Estacionamientos con EVs: rociadores de techo no son suficientes. Se estudian sistemas ESFR modificados.</div></div>
         <div class="norm-item"><div class="norm-code">IA en Mantenimiento Predictivo</div><div class="norm-desc">Sistemas IoT que anticipan fallos antes de la prueba anual NFPA 25.</div></div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DATOS DE PROYECTO -->
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3>📄 Datos del Reporte</h3>
+    <div class="form-group"><label>Nombre del Proyecto</label><input type="text" id="rpt_proyecto" placeholder="Ej: Centro Comercial Plaza Norte"></div>
+    <div class="form-group"><label>Ubicación / Dirección</label><input type="text" id="rpt_ubicacion" placeholder="Ej: Av. Alfredo Benavides 123, Lima"></div>
+    <div class="form-group"><label>Responsable / Ingeniero</label><input type="text" id="rpt_responsable" placeholder="Ej: Ing. Eduardo Villanueva"></div>
+    <div class="form-group"><label>Código / N° de Proyecto</label><input type="text" id="rpt_codigo" placeholder="Ej: G3S-2026-001"></div>
+    <div class="modal-actions">
+      <button class="btn btn-cancel btn-block" onclick="cerrarModal()">✕ Cancelar</button>
+      <button class="btn btn-report btn-block" onclick="confirmarReporte()">🖨️ Generar PDF</button>
     </div>
   </div>
 </div>
@@ -604,6 +652,8 @@
       </div>
     </div>
   </div>
+  <hr class="report-divider">
+  <button class="btn btn-report btn-block" onclick="abrirModal('extintores')">🖨️ Generar Reporte PDF — Extintores</button>
 </div>
 
 </main>
@@ -836,6 +886,236 @@ function calcEvac() {
 }
 
 window.onload=function(){calcHRR();calcHW();calcSprinkler();calcPump();calcEvac();calcExtintores();};
+
+// ============================================================
+// SISTEMA DE REPORTES PDF
+// ============================================================
+let _tabReporte = '';
+
+function abrirModal(tab) {
+  _tabReporte = tab;
+  document.getElementById('reportModal').classList.add('open');
+}
+function cerrarModal() {
+  document.getElementById('reportModal').classList.remove('open');
+}
+
+function confirmarReporte() {
+  cerrarModal();
+  const proyecto    = document.getElementById('rpt_proyecto').value   || '(Sin nombre)';
+  const ubicacion   = document.getElementById('rpt_ubicacion').value  || '(Sin ubicación)';
+  const responsable = document.getElementById('rpt_responsable').value|| '(Sin responsable)';
+  const codigo      = document.getElementById('rpt_codigo').value     || '—';
+  const ahora       = new Date();
+  const fechaStr    = ahora.toLocaleDateString('es-PE', {day:'2-digit',month:'long',year:'numeric'});
+  const horaStr     = ahora.toLocaleTimeString('es-PE', {hour:'2-digit',minute:'2-digit'});
+
+  const encabezado = `
+    <div style="border-bottom:3px solid #c0392b;padding-bottom:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div style="font-size:1.4rem;font-weight:800;color:#c0392b;letter-spacing:1px;">🔥 GRUPO 3S OBRAS</div>
+        <div style="font-size:0.8rem;color:#555;text-transform:uppercase;letter-spacing:1px;">Ingeniería de Protección Contra Incendios</div>
+      </div>
+      <div style="text-align:right;font-size:0.78rem;color:#555;">
+        <div><b>Fecha:</b> ${fechaStr}</div>
+        <div><b>Hora:</b> ${horaStr}</div>
+        <div><b>Código:</b> ${codigo}</div>
+      </div>
+    </div>
+    <div style="background:#f9f9f9;border:1px solid #ddd;border-radius:8px;padding:12px 16px;margin-bottom:20px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.85rem;">
+      <div><b>Proyecto:</b> ${proyecto}</div>
+      <div><b>Responsable:</b> ${responsable}</div>
+      <div style="grid-column:1/-1;"><b>Ubicación:</b> ${ubicacion}</div>
+    </div>`;
+
+  const estilosBase = `
+    <style>
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'Segoe UI',sans-serif;color:#222;background:#fff;padding:28px 32px;font-size:0.88rem;}
+      h2{font-size:1.1rem;color:#c0392b;margin-bottom:14px;border-left:4px solid #c0392b;padding-left:10px;}
+      h3{font-size:0.9rem;color:#555;margin:16px 0 8px;text-transform:uppercase;letter-spacing:0.5px;}
+      table{width:100%;border-collapse:collapse;margin-bottom:14px;}
+      th{background:#c0392b;color:#fff;padding:8px 10px;text-align:left;font-size:0.76rem;text-transform:uppercase;}
+      td{padding:7px 10px;border-bottom:1px solid #eee;font-size:0.84rem;}
+      tr:nth-child(even) td{background:#fafafa;}
+      .result-val{font-weight:700;color:#c0392b;}
+      .alert-box{padding:10px 14px;border-radius:6px;font-size:0.82rem;margin-top:10px;border-left:4px solid;}
+      .alert-ok{background:#f0fff4;border-color:#27ae60;color:#1e8449;}
+      .alert-warn{background:#fffbf0;border-color:#f39c12;color:#b7770d;}
+      .alert-danger{background:#fff5f5;border-color:#c0392b;color:#922b21;}
+      .footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:0.74rem;color:#999;text-align:center;}
+      @media print{body{padding:16px 20px;}}
+    </style>`;
+
+  let contenido = '';
+
+  if (_tabReporte === 'hrr') {
+    const sel = document.getElementById('hrrClass').value;
+    const alphaVal = sel==='custom' ? document.getElementById('alphaCustom').value : sel;
+    const tMax = document.getElementById('tMax').value;
+    const Qd   = document.getElementById('qFlashover').value;
+    const A    = document.getElementById('aLocal').value;
+    const H    = document.getElementById('hLocal').value;
+    contenido = `
+      <h2>📈 Análisis HRR — Modelo αt² (NFPA 72 / ISO 16734)</h2>
+      <h3>Parámetros Ingresados</h3>
+      <table><thead><tr><th>Parámetro</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Clasificación de crecimiento</td><td class="result-val">${document.getElementById('hrrClass').options[document.getElementById('hrrClass').selectedIndex].text}</td></tr>
+        <tr><td>Coeficiente α</td><td class="result-val">${alphaVal} kW/s²</td></tr>
+        <tr><td>Tiempo de simulación</td><td class="result-val">${tMax} s</td></tr>
+        <tr><td>HRR de diseño (Q_fo)</td><td class="result-val">${Qd} kW</td></tr>
+        <tr><td>Área del local</td><td class="result-val">${A} m²</td></tr>
+        <tr><td>Altura del local</td><td class="result-val">${H} m</td></tr>
+      </tbody></table>
+      <h3>Resultados</h3>
+      <table><thead><tr><th>Resultado</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Tiempo a 1 MW (t₁MW)</td><td class="result-val">${document.getElementById('r_t1mw').textContent}</td></tr>
+        <tr><td>Tiempo a flashover (t_fo)</td><td class="result-val">${document.getElementById('r_tfo').textContent}</td></tr>
+        <tr><td>HRR a t_max</td><td class="result-val">${document.getElementById('r_qtmax').textContent}</td></tr>
+        <tr><td>Criterio Thomas (Q_fo mínimo)</td><td class="result-val">${document.getElementById('r_thomas').textContent}</td></tr>
+      </tbody></table>
+      ${getAlertHtml('hrrAlert')}
+      <div class="alert-box alert-ok" style="margin-top:12px;">📌 <b>Norma de referencia:</b> NFPA 72, ISO 16734, SFPE Handbook. El modelo αt² es válido para la fase de crecimiento libre del incendio.</div>`;
+  }
+
+  else if (_tabReporte === 'hidro') {
+    contenido = `
+      <h2>💧 Cálculo Hidráulico — Hazen-Williams (NFPA 13 / NFPA 14)</h2>
+      <h3>Parámetros Ingresados</h3>
+      <table><thead><tr><th>Parámetro</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Caudal Q</td><td class="result-val">${document.getElementById('hwQ').value} L/min</td></tr>
+        <tr><td>Longitud tubería L</td><td class="result-val">${document.getElementById('hwL').value} m</td></tr>
+        <tr><td>Diámetro interno D</td><td class="result-val">${document.getElementById('hwD').value} mm</td></tr>
+        <tr><td>Coeficiente C</td><td class="result-val">${document.getElementById('hwC').value} — ${document.getElementById('hwC').options[document.getElementById('hwC').selectedIndex].text}</td></tr>
+        <tr><td>Long. equiv. accesorios</td><td class="result-val">${document.getElementById('hwLeq').value} m</td></tr>
+        <tr><td>Diferencia de elevación Δz</td><td class="result-val">${document.getElementById('hwZ').value} m</td></tr>
+      </tbody></table>
+      <h3>Resultados</h3>
+      <table><thead><tr><th>Resultado</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Velocidad de flujo</td><td class="result-val">${document.getElementById('r_vel').textContent}</td></tr>
+        <tr><td>Pérdida por fricción</td><td class="result-val">${document.getElementById('r_hf_kpa').textContent} / ${document.getElementById('r_hf_psi').textContent}</td></tr>
+        <tr><td>Pérdida por elevación</td><td class="result-val">${document.getElementById('r_hz').textContent}</td></tr>
+        <tr><td>Pérdida TOTAL</td><td class="result-val">${document.getElementById('r_htot').textContent}</td></tr>
+        <tr><td>Gradiente hidráulico</td><td class="result-val">${document.getElementById('r_grad').textContent}</td></tr>
+      </tbody></table>
+      ${getAlertHtml('hwAlert')}
+      <div class="alert-box alert-ok" style="margin-top:12px;">📌 <b>Norma de referencia:</b> NFPA 13 §28, NFPA 14. Velocidad máxima permitida: 6 m/s. Fórmula: h_f = 10.67 × Q^1.852 / (C^1.852 × D^4.87).</div>`;
+  }
+
+  else if (_tabReporte === 'rociadores') {
+    contenido = `
+      <h2>🚿 Diseño de Sistema de Rociadores — NFPA 13</h2>
+      <h3>Parámetros Ingresados</h3>
+      <table><thead><tr><th>Parámetro</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Clasificación de riesgo</td><td class="result-val">${document.getElementById('riskType').options[document.getElementById('riskType').selectedIndex].text}</td></tr>
+        <tr><td>Separación entre rociadores (S)</td><td class="result-val">${document.getElementById('spkS').value} m</td></tr>
+        <tr><td>Separación entre ramales (L)</td><td class="result-val">${document.getElementById('spkL').value} m</td></tr>
+        <tr><td>Presión disponible</td><td class="result-val">${document.getElementById('spkP').value} bar</td></tr>
+        <tr><td>Factor K del rociador</td><td class="result-val">${document.getElementById('spkK').value}</td></tr>
+      </tbody></table>
+      <h3>Resultados</h3>
+      <table><thead><tr><th>Resultado</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Densidad requerida / real</td><td class="result-val">${document.getElementById('r_dens').textContent}</td></tr>
+        <tr><td>Área de diseño</td><td class="result-val">${document.getElementById('r_area_d').textContent}</td></tr>
+        <tr><td>N° rociadores en área</td><td class="result-val">${document.getElementById('r_n_spk').textContent}</td></tr>
+        <tr><td>Área por rociador</td><td class="result-val">${document.getElementById('r_a_spk').textContent}</td></tr>
+        <tr><td>Caudal por rociador</td><td class="result-val">${document.getElementById('r_q_spk').textContent}</td></tr>
+        <tr><td>Caudal total área diseño</td><td class="result-val">${document.getElementById('r_q_total').textContent}</td></tr>
+        <tr><td>RTI recomendado</td><td class="result-val">${document.getElementById('r_rti').textContent}</td></tr>
+      </tbody></table>
+      ${getAlertHtml('sprinkAlert')}
+      <div class="alert-box alert-ok" style="margin-top:12px;">📌 <b>Norma de referencia:</b> NFPA 13 Ed. 2022, Tabla 19.3.3.1.1. RNE A.130.</div>`;
+  }
+
+  else if (_tabReporte === 'bombas') {
+    contenido = `
+      <h2>⚙️ Dimensionamiento Bomba Contra Incendio — NFPA 20</h2>
+      <h3>Parámetros Ingresados</h3>
+      <table><thead><tr><th>Parámetro</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Caudal de diseño Q</td><td class="result-val">${document.getElementById('pumpQ').value} L/min</td></tr>
+        <tr><td>Presión de diseño H</td><td class="result-val">${document.getElementById('pumpH').value} kPa</td></tr>
+        <tr><td>Presión estática fuente</td><td class="result-val">${document.getElementById('pumpHs').value} kPa</td></tr>
+        <tr><td>Caudal nominal bomba (Qn)</td><td class="result-val">${document.getElementById('pumpQn').value} L/min</td></tr>
+        <tr><td>Presión nominal bomba (Hn)</td><td class="result-val">${document.getElementById('pumpHn').value} kPa</td></tr>
+        <tr><td>Eficiencia estimada</td><td class="result-val">${document.getElementById('pumpEff').value} %</td></tr>
+      </tbody></table>
+      <h3>Resultados</h3>
+      <table><thead><tr><th>Resultado</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Potencia al freno (BHP)</td><td class="result-val">${document.getElementById('r_bhp').textContent} / ${document.getElementById('r_bhp_hp').textContent}</td></tr>
+        <tr><td>Motor recomendado</td><td class="result-val">${document.getElementById('r_motor').textContent}</td></tr>
+        <tr><td>Q al 150% nominal</td><td class="result-val">${document.getElementById('r_q150').textContent}</td></tr>
+        <tr><td>H mínima al 150% Q</td><td class="result-val">${document.getElementById('r_h150').textContent}</td></tr>
+      </tbody></table>
+      <div class="alert-box alert-ok" style="margin-top:12px;">📌 <b>Norma de referencia:</b> NFPA 20 Ed. 2022. Criterios: curva H-Q al 150% Qn ≥ 65% Hn; churn ≤ 140% Hn; rango de operación 90–140% Qn.</div>`;
+  }
+
+  else if (_tabReporte === 'evacuacion') {
+    contenido = `
+      <h2>🚪 Análisis de Evacuación — NFPA 101 (ASET vs RSET)</h2>
+      <h3>Parámetros Ingresados</h3>
+      <table><thead><tr><th>Parámetro</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Tipo de ocupación</td><td class="result-val">${document.getElementById('occType').options[document.getElementById('occType').selectedIndex].text}</td></tr>
+        <tr><td>Personas a evacuar</td><td class="result-val">${document.getElementById('evacPax').value} personas</td></tr>
+        <tr><td>Número de salidas</td><td class="result-val">${document.getElementById('evacSalidas').value}</td></tr>
+        <tr><td>Ancho de salida</td><td class="result-val">${document.getElementById('evacAncho').value} m</td></tr>
+        <tr><td>Distancia de viaje máx.</td><td class="result-val">${document.getElementById('evacDist').value} m</td></tr>
+        <tr><td>Tiempo pre-evacuación (t_pre)</td><td class="result-val">${document.getElementById('evacTpre').value} s</td></tr>
+        <tr><td>ASET disponible</td><td class="result-val">${document.getElementById('evacAset').value} s</td></tr>
+      </tbody></table>
+      <h3>Resultados</h3>
+      <table><thead><tr><th>Resultado</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Capacidad total de salidas</td><td class="result-val">${document.getElementById('r_cap').textContent}</td></tr>
+        <tr><td>Tiempo de movimiento</td><td class="result-val">${document.getElementById('r_tmov').textContent}</td></tr>
+        <tr><td>RSET total</td><td class="result-val">${document.getElementById('r_rset').textContent}</td></tr>
+        <tr><td>ASET disponible</td><td class="result-val">${document.getElementById('r_aset').textContent}</td></tr>
+        <tr><td>Margen de seguridad</td><td class="result-val">${document.getElementById('r_margin').textContent}</td></tr>
+      </tbody></table>
+      ${getAlertHtml('evacAlert')}
+      <div class="alert-box alert-ok" style="margin-top:12px;">📌 <b>Norma de referencia:</b> NFPA 101 Ed. 2021 — Life Safety Code. Diseño Prestacional (PBD). Factor mínimo ASET/RSET recomendado: 1.5.</div>`;
+  }
+
+  else if (_tabReporte === 'extintores') {
+    contenido = `
+      <h2>🧯 Cálculo de Extintores — NFPA 10 / NTP 350.043-1</h2>
+      <h3>Parámetros Ingresados</h3>
+      <table><thead><tr><th>Parámetro</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Clasificación de riesgo</td><td class="result-val">${document.getElementById('extRiesgo').options[document.getElementById('extRiesgo').selectedIndex].text}</td></tr>
+        <tr><td>Clase de fuego predominante</td><td class="result-val">${document.getElementById('extClaseFuego').options[document.getElementById('extClaseFuego').selectedIndex].text}</td></tr>
+        <tr><td>Área total del local</td><td class="result-val">${document.getElementById('extArea').value} m²</td></tr>
+        <tr><td>Número de pisos</td><td class="result-val">${document.getElementById('extPisos').value}</td></tr>
+        <tr><td>Potencial extintor seleccionado</td><td class="result-val">${document.getElementById('extPotencial').options[document.getElementById('extPotencial').selectedIndex].text}</td></tr>
+      </tbody></table>
+      <h3>Resultados</h3>
+      <table><thead><tr><th>Resultado</th><th>Valor</th></tr></thead><tbody>
+        <tr><td>Área máx. por extintor</td><td class="result-val">${document.getElementById('r_ext_area_max').textContent}</td></tr>
+        <tr><td>Distancia máx. de recorrido</td><td class="result-val">${document.getElementById('r_ext_dist').textContent}</td></tr>
+        <tr><td>Potencial mínimo requerido</td><td class="result-val">${document.getElementById('r_ext_pot_min').textContent}</td></tr>
+        <tr><td>N° extintores por piso</td><td class="result-val">${document.getElementById('r_ext_n_piso').textContent}</td></tr>
+        <tr><td>N° extintores TOTAL</td><td class="result-val">${document.getElementById('r_ext_total').textContent}</td></tr>
+        <tr><td>Agente recomendado</td><td class="result-val">${document.getElementById('r_ext_agente').textContent}</td></tr>
+      </tbody></table>
+      ${getAlertHtml('extAlert')}
+      <div class="alert-box alert-ok" style="margin-top:12px;">📌 <b>Norma de referencia:</b> NFPA 10 Ed. 2022, Tabla 6.2.1. NTP 350.043-1 (Perú). Altura máxima de instalación: 1.50 m (parte superior del extintor).</div>`;
+  }
+
+  const ventana = window.open('', '_blank');
+  ventana.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Reporte PCI — ${proyecto}</title>${estilosBase}</head><body>
+    ${encabezado}
+    ${contenido}
+    <div class="footer">Generado por PCI Toolkit · Grupo 3S Obras · ${fechaStr} ${horaStr} · Solo para uso de ingeniería — verificar con normas vigentes aplicables al proyecto.</div>
+    <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`);
+  ventana.document.close();
+}
+
+function getAlertHtml(id) {
+  const el = document.getElementById(id);
+  if (!el || !el.textContent.trim()) return '';
+  let cls = 'alert-ok';
+  if (el.className.includes('danger')) cls = 'alert-danger';
+  else if (el.className.includes('warning')) cls = 'alert-warn';
+  return `<div class="alert-box ${cls}">${el.textContent}</div>`;
+}
 </script>
 </body>
 </html>
